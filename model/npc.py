@@ -8,31 +8,35 @@ class npc:
         self.hunger =hunger
         self.fear = fear
         self.intelligence =intelligence
-        self.clue = []
+        self.clues = []
     
     def introduce(self):
 
-        print(f'hi im {self.name} and i have these many clues {self.clue}')
+        print(f'hi im {self.name} and i have these many clues {self.clues}')
 
     def stats(self):
         print('npc name : ' ,self.name)
         print('npc age : ',self.age)
-        print('npc clue : ',self.clue)
+        print('npc clue : ',self.clues)
         print('npc Fear : ',self.fear)
         print('npc intelligence : ',self.intelligence)
         print('npc Hunger : ',self.hunger)
 
     def search_clue(self,location):
+        if random.random() < (self.intelligence/100):
+            clue =random.choice(location.clues)
+            print(f"{self.name} found {clue}")
 
-        if random.random() < (self.intelligence /100):
-            clue = random.choice(self.location.clues)
-
-        if clue not in self.clues:
-            self.clues.append(clue)
-
+            if clue not in self.clues:
+                self.clues.append(clue)
+            else:
+                print(f'{self.name} already knows this clue')
         else:
-            print(f'{self.name} is searching for the clue yet')
+            print(f'{self.name} failed to find anything in {location.name}')
+            self.fear +=20
+       
 
+       
         
             
 
@@ -44,7 +48,7 @@ class npc:
         self.hunger += location.hunger
         
         print(f'{self.name} is currently in {location.name}')
-        print(f'{self.name} has examined the loaction and have found these many clues {len(self.clue)}')
+        print(f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}')
 
     
     
