@@ -34,11 +34,7 @@ class npc:
         else:
             print(f'{self.name} failed to find anything in {location.name}')
             self.fear +=20
-       
 
-       
-        
-            
 
     def move(self,location):
  

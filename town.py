@@ -33,7 +33,7 @@ import random
 
 
 
-n1 = characters[1]
+n1 = characters[4]
 
 for i  in range(5) :
     print('day',i)

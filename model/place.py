@@ -24,9 +24,9 @@ church = location(clue=['A broken stained glass window showing a symbol pointing
 'Strange static on an old radio buried near the altar'],intelligence=10,fear=-10,hunger=-20,name='church')
 
 
-diner = location(clue=['A overheard conversation: someone escaped… but returned changed'
-'Receipt with hidden coded message on the back'
-'Local map with a route circled multiple times'
+diner = location(clue=['A overheard conversation: someone escaped… but returned changed',
+'Receipt with hidden coded message on the back',
+'Local map with a route circled multiple times',
 'Waitress mentions: Dont trust anyone who knows too much'],intelligence=10,hunger=80,name='diner',fear=10)
 
 colony_house = location(clue=['Old resident list with names crossed out mysteriously',
