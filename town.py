@@ -20,9 +20,10 @@ ch1 = characters[1]
 
 for location in locations:
 
-    ch1.move(location=location)
+    # ch1.move(location=location)
+    for charcter in characters:
+        charcter.move(location=location)
 
 
-ch1.stat()
 
 

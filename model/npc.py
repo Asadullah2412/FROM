@@ -22,7 +22,7 @@ class npc:
 
     def search_clue(self):
 
-        if self.intelligence >= 40:
+        if self.intelligence >= 60:
             self.clue +=1
         else:
             print('not enough intelligence')
@@ -32,8 +32,6 @@ class npc:
         # location_name = location.name
         # self.clue += location.clue  # add search function here 
         self.intelligence += location.intelligence
-       
-        clue = self.clue
         self.search_clue()
         self.fear += location.fear
         self.hunger += location.hunger
