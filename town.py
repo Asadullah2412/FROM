@@ -1,21 +1,25 @@
-from model.place import location
-from model.npc import npc
-
-# initializaiton of places
-church = location(clue=1,intelligence=10,fear=-10,hunger=-20,name='church')
-diner = location(clue=1,intelligence=10,hunger=80,name='diner',fear=10)
-colony_house = location(clue=1,intelligence=5,hunger=-40,name='colony house',fear=10)
-barn =  location(clue=0,intelligence=5,hunger=-20,name='barn',fear=10)
-hospital = location(clue=1,intelligence=10,hunger=-20,name='hospital',fear= -10)
-forest = location(clue=1,intelligence=5,hunger=-20,name='forest',fear=40)
+from model.place import locations
+from model.npc import characters
 
 
-# fisrt run
-church.speak()
-diner.speak()
-colony_house.speak()
-barn.speak()
-hospital.speak()
-forest.speak()
+# print('all the locations in the town ')
+
+# for location in locations:
+#     location.speak()
+
+
+
+# print('characters in the town')
+
+# for character in characters:
+#     character.introduce()
+
+
+
+eg1 = characters[0]
+
+eg1.move(location=locations[0])
+eg1.move(location=locations[1])
+
 
 
