@@ -15,11 +15,14 @@ from model.npc import characters
 #     character.introduce()
 
 
+ch1 = characters[1]
 
-eg1 = characters[0]
 
-eg1.move(location=locations[0])
-eg1.move(location=locations[1])
+for location in locations:
 
+    ch1.move(location=location)
+
+
+ch1.stat()
 
 

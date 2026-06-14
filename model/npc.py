@@ -12,12 +12,37 @@ class npc:
 
         print(f'hi im {self.name} and i have these many clues {self.clue}')
 
+    def stat(self):
+        print('npc name : ' ,self.name)
+        print('npc age : ',self.age)
+        print('npc clue : ',self.clue)
+        print('npc Fear : ',self.fear)
+        print('npc intelligence : ',self.intelligence)
+        print('npc Hunger : ',self.hunger)
+
+    def search_clue(self):
+
+        if self.intelligence >= 40:
+            self.clue +=1
+        else:
+            print('not enough intelligence')
+            
+
     def move(self,location):
-        location_name = location.name
-        self.clue += location.clue
+        # location_name = location.name
+        # self.clue += location.clue  # add search function here 
+        self.intelligence += location.intelligence
+       
+        clue = self.clue
+        self.search_clue()
+        self.fear += location.fear
+        self.hunger += location.hunger
         
-        print(f'{self.name} is currently in {location_name}')
+        print(f'{self.name} is currently in {location.name}')
         print(f'{self.name} has these clues {self.clue}')
+
+    
+    
         
 
         
