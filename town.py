@@ -33,10 +33,19 @@ import random
 
 
 
-n1 = characters[4]
+# n1 = characters[4]
 
-for i  in range(5) :
-    print('day',i)
-    n1.move(location=random.choice(locations))
+# for i  in range(5) :
+#     print('day',i)
+#     n1.move(location=random.choice(locations))
 
-print(n1.stats())
+# print(n1.stats())
+
+
+# isDay testing
+
+from world.engine import world
+
+w1 = world(day=1,event='Testing',isDay=False)
+
+w1.advance_time()

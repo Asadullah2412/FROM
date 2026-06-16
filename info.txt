@@ -1,0 +1,261 @@
+Absolutely 😁
+
+I'll keep it at the **architecture level**, no code.
+
+---
+
+# 🌎 World Class
+
+### `run_day()`
+
+→ Runs one full simulation day.
+
+### `advance_time()`
+
+→ Switches between day/night and increments day counter.
+
+### `register_npc()`
+
+→ Adds NPCs into the world.
+
+### `register_location()`
+
+→ Adds locations into the world.
+
+### `log_event()`
+
+→ Records important events.
+
+### `show_world_status()`
+
+→ Displays current world state.
+
+### `check_escape_condition()`
+
+→ Checks if the mystery has been solved.
+
+### `trigger_random_event()`
+
+→ Generates random world events later.
+
+---
+
+# 📍 Location Class
+
+### `get_random_clue()`
+
+→ Returns a clue from the location.
+
+### `remove_clue()`
+
+→ Removes discovered clue from location.
+
+### `show_location_info()`
+
+→ Displays location details.
+
+### `get_neighbors()`
+
+→ Returns connected locations.
+
+### `is_dangerous()`
+
+→ Checks danger level.
+
+---
+
+# 👤 NPC Class
+
+### `move()`
+
+→ Chooses next location.
+
+### `search_clue()`
+
+→ Searches current location for clues.
+
+### `share_clue()`
+
+→ Shares knowledge with another NPC.
+
+### `receive_clue()`
+
+→ Accepts knowledge from another NPC.
+
+### `update_fear()`
+
+→ Adjusts fear level.
+
+### `update_hunger()`
+
+→ Adjusts hunger level.
+
+### `rest()`
+
+→ Recovers stats.
+
+### `remember_event()`
+
+→ Stores important memories.
+
+### `report_status()`
+
+→ Prints NPC information.
+
+### `decide_action()`
+
+→ Main decision-making function.
+
+---
+
+# 🧠 Communication System
+
+### `start_conversation()`
+
+→ Begins interaction between two NPCs.
+
+### `exchange_information()`
+
+→ Shares known clues.
+
+### `increase_trust()`
+
+→ Improves relationship.
+
+### `decrease_trust()`
+
+→ Damages relationship.
+
+### `evaluate_claim()`
+
+→ Decides whether to believe information.
+
+---
+
+# 👹 Monster Class
+
+### `spawn()`
+
+→ Places monster in world.
+
+### `teleport()`
+
+→ Moves monster to new location.
+
+### `hunt()`
+
+→ Chooses target behavior.
+
+### `detect_npc()`
+
+→ Checks if NPC is nearby.
+
+### `appear()`
+
+→ Reveals monster presence.
+
+### `disappear()`
+
+→ Removes monster from scene.
+
+### `cause_fear()`
+
+→ Applies fear effect.
+
+---
+
+# 📜 Event System
+
+### `create_event()`
+
+→ Generates event object.
+
+### `broadcast_event()`
+
+→ Sends event to NPCs.
+
+### `resolve_event()`
+
+→ Processes consequences.
+
+### `show_event_history()`
+
+→ Displays event log.
+
+---
+
+# 🕵️ Future "FROM + Among Us" Functions
+
+### `report_monster_sighting()`
+
+→ NPC claims monster was seen.
+
+### `investigate_sighting()`
+
+→ Other NPCs verify claim.
+
+### `spread_rumor()`
+
+→ Pass information through town.
+
+### `verify_information()`
+
+→ Determine truthfulness.
+
+### `accuse_npc()`
+
+→ NPC blames another NPC.
+
+### `defend_claim()`
+
+→ NPC explains themselves.
+
+### `vote_on_claim()`
+
+→ Group decides who to trust.
+
+---
+
+# 🔥 The Function I Think Will Become The Heart Of Your Project
+
+### `decide_action()`
+
+Eventually this becomes:
+
+```text id="fn1"
+Observe World
+↓
+Evaluate Fear
+↓
+Evaluate Hunger
+↓
+Evaluate Trust
+↓
+Evaluate Monster Risk
+↓
+Choose Action
+```
+
+Almost everything in the simulation will flow through this one function.
+
+---
+
+If I were building this project, my next milestone would be:
+
+```text id="fn2"
+World
+├── run_day()
+├── log_event()
+
+NPC
+├── move()
+├── search_clue()
+├── decide_action()
+
+Location
+├── get_random_clue()
+```
+
+Build only those first.
+
+Once those are solid, the monster, distrust, rumors, and social chaos will have a strong foundation to sit on. 😈
