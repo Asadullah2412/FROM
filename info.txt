@@ -259,3 +259,17 @@ Location
 Build only those first.
 
 Once those are solid, the monster, distrust, rumors, and social chaos will have a strong foundation to sit on. 😈
+
+
+
+main.py
+    ├── create world
+    ├── show menu
+    ├── get user input
+    └── call world methods
+
+World
+    ├── advance_time()
+    ├── run_day()
+    ├── log_event()
+    └── check_escape()

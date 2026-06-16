@@ -46,9 +46,13 @@ import random
 
 from world.engine import world
 
-w1 = world(day=1,event='Testing',isDay=False)
+w1 = world(day=1,isDay=False)
 
 # w1.advance_time()
 
-w1.add_npc()
-w1.display_world_content()
+# w1.add_npc() # add npc test
+
+w1.add_location()
+w1.display_world_content() 
+
+print(w1.locations)

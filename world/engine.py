@@ -6,10 +6,10 @@ from model.place import location
 
 class world:
 
-    def __init__(self,day,event,isDay):
+    def __init__(self,day,isDay):
         self.day =day
-        self.event = event
         self.isDay = isDay
+        self.events = []
         self.npcs = []
         self.monster =[] # adding this later
         self.locations = []
@@ -67,4 +67,9 @@ class world:
         print(f"players are {len(self.npcs)}")
         print(f"monster are {self.monster}")
         print(f"Locations are {self.locations}")
+        print(f'the events which occured are {self.events}')
+
+    
+    def log_event(self,new_event):
+        self.events.append(new_event)
 

@@ -7,6 +7,10 @@ class location:
         self.intelligence = intelligence
         self.fear = fear
         self.hunger =hunger
+    
+    def __repr__(self):
+
+        return self.name
 
         
     def speak(self):

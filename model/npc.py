@@ -10,6 +10,10 @@ class NPC:
         self.intelligence =intelligence
         self.clues = []
     
+    def __repr__(self):
+
+        return self.name
+    
     def introduce(self):
 
         print(f'hi im {self.name} and i have these many clues {self.clues}')
