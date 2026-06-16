@@ -48,4 +48,7 @@ from world.engine import world
 
 w1 = world(day=1,event='Testing',isDay=False)
 
-w1.advance_time()
+# w1.advance_time()
+
+w1.add_npc()
+w1.display_world_content()

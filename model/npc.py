@@ -1,6 +1,6 @@
 import random
 
-class npc:
+class NPC:
     
     def __init__(self,name,age,hunger,fear,intelligence):
         self.name = name
@@ -51,12 +51,12 @@ class npc:
         
 
         
-
-npc1 = npc(name='npc1',age='27',hunger=20,fear=40,intelligence=20)
-npc2 = npc(name='npc2',age='57',hunger=50,fear=10,intelligence=50)
-npc3 = npc(name='npc3',age='37',hunger=10,fear=30,intelligence=40)
-npc4 = npc(name='npc4',age='17',hunger=20,fear=30,intelligence=10)
-npc5 = npc(name='npc5',age='47',hunger=30,fear=10,intelligence=5)
+# dummy for test
+npc1 = NPC(name='npc1',age='27',hunger=20,fear=40,intelligence=20)
+npc2 = NPC(name='npc2',age='57',hunger=50,fear=10,intelligence=50)
+npc3 = NPC(name='npc3',age='37',hunger=10,fear=30,intelligence=40)
+npc4 = NPC(name='npc4',age='17',hunger=20,fear=30,intelligence=10)
+npc5 = NPC(name='npc5',age='47',hunger=30,fear=10,intelligence=5)
 
 
 characters = [npc1,npc2,npc3,npc4,npc5]
