@@ -1,4 +1,4 @@
-from model.place import locations
+from model.place import locations,Location
 from model.npc import characters
 import random
 
@@ -44,15 +44,31 @@ import random
 
 # isDay testing
 
-from world.engine import world
+# from world.engine import world
 
-w1 = world(day=1,isDay=False)
+# w1 = world(day=1,isDay=False)
 
-# w1.advance_time()
+# # w1.advance_time()
 
-# w1.add_npc() # add npc test
+# # w1.add_npc() # add npc test
 
-w1.add_location()
-w1.display_world_content() 
+# w1.add_location()
+# w1.display_world_content() 
 
-print(w1.locations)
+# print(w1.locations)
+
+# location testing ahead ⚠️⚠️⚠️
+
+l1 = Location(name='Home',danger=75,knowledge_value=27,food_supply=38,clues=[1,2,3])
+
+l1.add_neighbors(new_neighbors=['left','right','back','center'])
+print(">>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<")
+clue_random = l1.get_random_clue()
+print(clue_random)
+print("_____________________________________")
+n1 = l1.get_neighbors()
+print(n1)
+# print(">>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<")
+l1.is_dangerous()
+print(">>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<")
+l1.show_location_info()
