@@ -1,6 +1,9 @@
 # world = base crust of a pizza 
 # verry important
 
+import copy
+import random
+
 from model.npc import NPC
 from model.place import Location
 class world:
@@ -14,6 +17,7 @@ class world:
         self.locations = []
         self.global_clues = 20
         self.discovered_clues = []
+        self.town_map = {}
 
 
     def get_discovered_clues(self,npc):
@@ -33,15 +37,41 @@ class world:
             print('Need to find more clues')
             return False
 
+    def other_npcs(self,npc):
+        available_npcs = [n for n in self.npcs if n != npc]
+        return random.choice(available_npcs)
+    # dummy method above will be removed 
+
+    # def location_npc_check(self,current_location,npcs):
+    #     if map[current_location] > 1:
+    #         npcs.meet()
+    
+
     def run_day(self):
 
         # 1. Print current day
         print(f"current day is {self.day}")
-
         # 2. Loop through NPCs
         for npc in self.npcs:
-            npc.act(locations =self.locations) # 3. NPC moves , 5. NPC updates stats
+            current_location = random.choice(self.locations)
+            
+            if current_location in self.town_map:
+                self.town_map[current_location].append(npc)
+            else:
+                self.town_map[current_location] = [npc]
+            
+            npc.act(current_location) # 3. NPC moves , 5. NPC updates stats
+        
             self.get_discovered_clues(npc) #6 update discoverd clues
+
+            print(self.town_map)
+
+            # random_npc = self.other_npcs(npc=npc)
+            # npc.meet_npc(other_npc = random_npc)
+
+
+
+
 
         #7. check escape status
         if self.escape_status() == True:
@@ -69,6 +99,7 @@ class world:
     def add_predefined_npcs_locations(self,npcs,locations):
         self.npcs.extend(npcs)
         self.locations.extend(locations)
+
 
     def add_npc(self):
 
