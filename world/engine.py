@@ -12,8 +12,28 @@ class world:
         self.npcs = []
         self.monster =[] # adding this later
         self.locations = []
+        self.global_clues = 20
+        self.discovered_clues = []
 
-    def run_day(self,):
+
+    def get_discovered_clues(self,npc):
+
+        if len(npc.clues) == 0:
+            print(f"this {npc.name} has no clues ")
+        else:
+            self.discovered_clues.extend(npc.clues)
+        
+        return self.discovered_clues
+
+    def escape_status(self):
+        if len(self.discovered_clues) == self.global_clues:
+            print('Escaped')
+            return True
+        else:
+            print('Need to find more clues')
+            return False
+
+    def run_day(self):
 
         # 1. Print current day
         print(f"current day is {self.day}")
@@ -21,11 +41,18 @@ class world:
         # 2. Loop through NPCs
         for npc in self.npcs:
             npc.act(self.locations) # 3. NPC moves , 5. NPC updates stats
+            self.get_discovered_clues(npc) #6 update discoverd clues
 
-        # 6. Advance time
-        self.advance_time()
+        #7. check escape status
+        if self.escape_status() == True:
+            print("HURRAY!!!!")
+        else:
 
-        self.day += 1
+            # 8. Advance time
+            self.advance_time()
+            self.day += 1
+
+
         print(f"current day is {self.day}")
 
 
@@ -39,6 +66,10 @@ class world:
             print(f"it was night now its day")
 
     
+    def add_predefined_npcs_locations(self,npcs,locations):
+        self.npcs.extend(npcs)
+        self.locations.extend(locations)
+
     def add_npc(self):
 
         npc_name = input('Enter the name >>> ')
@@ -70,8 +101,6 @@ class world:
         else:
             self.locations.append(new_location)
 
-    
-
 
     def display_world_content(self):
 
@@ -79,6 +108,7 @@ class world:
         print(f"monster are {self.monster}")
         print(f"Locations are {self.locations}")
         print(f'the events which occured are {self.events}')
+        print(f'escape status = {len(self.discovered_clues)} / {self.global_clues}')
 
     
     def log_event(self,new_event):

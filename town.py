@@ -97,8 +97,10 @@ import random
 # world testing ⚠️⚠️⚠️
 
 w1 = world(day=1,isDay=True)
-w1.npcs.extend(characters)
-w1.locations.extend(locations)
+# w1.npcs.extend(characters)
+# w1.locations.extend(locations)
+
+w1.add_predefined_npcs_locations(npcs=characters,locations=locations)
 
 w1.run_day()
 
