@@ -1,6 +1,11 @@
 from model.place import locations,Location
 from model.npc import characters,NPC
+from world.engine import world
 import random
+
+
+
+
 
 # print('all the locations in the town ')
 
@@ -76,9 +81,25 @@ import random
 
 # NPC hunger method test ahead ⚠️⚠️
 
-loc1 = locations[0]
+# loc1 = locations[0]
 
-n1 = NPC(name='lala',age=18,hunger=20,fear=10,intelligence=45)
+# n1 = NPC(name='lala',age=18,hunger=10,fear=10,intelligence=45)
 
-n1.move(location=loc1)
-n1.stats()
+# # n1.move(location=loc1)
+# # n1.stats()
+# # print("before")
+# # n1.rest()
+# # print("after")
+
+# n1.act(locations=locations)
+# n1.stats()
+
+# world testing ⚠️⚠️⚠️
+
+w1 = world(day=1,isDay=True)
+w1.npcs.extend(characters)
+w1.locations.extend(locations)
+
+w1.run_day()
+
+w1.display_world_content()

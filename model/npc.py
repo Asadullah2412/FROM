@@ -47,26 +47,48 @@ class NPC:
     def check_hunger_level(self):
 
         if self.hunger >=80:
-            print("Hungry !!! find food")
+            # print("Hungry !!! find food")
+            # self.rest()
             return True
         else:
-            print("not so hungry")
+            # print("not so hungry")
             return False
 
-    def move(self,location):
-        
-        if self.check_hunger_level() == False:     
-        
-            self.intelligence += location.knowledge_value
-            self.search_clue(location=location)
-            self.fear += location.danger # update this 
-            self.hunger -= location.food_supply
-        
-            print(f'{self.name} is currently in {location.name}')
-            print(f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}')
+    def update_fear(self,location):
 
+        self.fear += (location.danger // 10)
+        return self.fear
+
+    def rest(self):
+
+        self.hunger = 10
+        self.fear -=30
+
+
+
+    def move(self,location):
+           
+        print(f'{self.name} is currently in {location.name}')
+        
+        self.intelligence += location.knowledge_value
+        self.search_clue(location=location)
+        self.fear += self.update_fear(location)
+        self.hunger -= location.food_supply
     
-    
+        print(f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}')
+
+
+    def act(self,locations):
+        
+        if self.check_hunger_level() == False:
+            loc = random.choice(locations)
+            self.move(location=loc)
+        else:
+            self.rest()
+
+
+        
+
         
 
         

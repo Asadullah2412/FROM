@@ -2,8 +2,7 @@
 # verry important
 
 from model.npc import NPC
-from model.place import location
-
+from model.place import Location
 class world:
 
     def __init__(self,day,isDay):
@@ -14,18 +13,30 @@ class world:
         self.monster =[] # adding this later
         self.locations = []
 
-    def run_day(self):
-        
-        pass 
+    def run_day(self,):
+
+        # 1. Print current day
+        print(f"current day is {self.day}")
+
+        # 2. Loop through NPCs
+        for npc in self.npcs:
+            npc.act(self.locations) # 3. NPC moves , 5. NPC updates stats
+
+        # 6. Advance time
+        self.advance_time()
+
+        self.day += 1
+        print(f"current day is {self.day}")
+
 
     def advance_time(self):
 
         if self.isDay == True:
             self.isDay = False
-            print(f"it was day now its {self.isDay}")
+            print(f"it was day now its night")
         else:
             self.isDay = True
-            print(f"it was night now its {self.isDay}")
+            print(f"it was night now its day")
 
     
     def add_npc(self):
@@ -52,14 +63,14 @@ class world:
         location_intelligence =  int(input("Enter intelligence >>> "))
         location_Fear =  int(input("Enter Fear >>> "))
 
-        new_location = location(clue= location_clue,intelligence=location_intelligence,fear=location_Fear,hunger=location_hunger,name=location_name)
+        new_location = Location(clue= location_clue,intelligence=location_intelligence,fear=location_Fear,hunger=location_hunger,name=location_name)
 
         if new_location in self.locations:
             print("Location already exists")
         else:
             self.locations.append(new_location)
 
-        
+    
 
 
     def display_world_content(self):
