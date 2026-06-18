@@ -2,9 +2,10 @@ import random
 
 class NPC:
     
-    def __init__(self,name,age,hunger,fear,intelligence):
+    def __init__(self,name,age,hunger,fear,intelligence,trust):
         self.name = name
         self.age = age
+        self.trust = trust
         self.hunger =hunger
         self.fear = fear
         self.intelligence =intelligence
@@ -39,6 +40,35 @@ class NPC:
             print(f'{self.name} failed to find anything in {location.name}')
             self.fear +=20
 
+
+
+
+
+
+# share_clue()
+    def share_clues(self,other_npc):
+
+        other_npc.clues.extend(self.clues)
+
+# increase_trust()
+    def increase_trust(self):
+        
+        self.trust +=30
+# decrease_trust()
+
+    def decrease_trust(self):
+        self.trust -=10
+
+
+
+#     meet_npc()
+    def meet_npc(self,other_npc):
+        if self.trust <= other_npc.trust:
+            self.increase_trust()
+            self.share_clues(other_npc=other_npc)
+            print(f"{self.name} has shared clues with {other_npc.name}")
+        else:
+            print(f"{self.name} does not trust {other_npc.name}")
 
 
     def update_hunger_level(self):
@@ -83,6 +113,7 @@ class NPC:
         if self.check_hunger_level() == False:
             loc = random.choice(locations)
             self.move(location=loc)
+            
         else:
             self.rest()
 
@@ -93,11 +124,11 @@ class NPC:
 
         
 # dummy for test
-npc1 = NPC(name='npc1',age='27',hunger=20,fear=40,intelligence=20)
-npc2 = NPC(name='npc2',age='57',hunger=50,fear=10,intelligence=50)
-npc3 = NPC(name='npc3',age='37',hunger=10,fear=30,intelligence=40)
-npc4 = NPC(name='npc4',age='17',hunger=20,fear=30,intelligence=10)
-npc5 = NPC(name='npc5',age='47',hunger=30,fear=10,intelligence=5)
+npc1 = NPC(name='npc1',trust=40,age='27',hunger=20,fear=40,intelligence=20)
+npc2 = NPC(name='npc2',trust=10,age='57',hunger=50,fear=10,intelligence=50)
+npc3 = NPC(name='npc3',trust=60,age='37',hunger=10,fear=30,intelligence=40)
+npc4 = NPC(name='npc4',trust=30,age='17',hunger=20,fear=30,intelligence=10)
+npc5 = NPC(name='npc5',trust=80,age='47',hunger=30,fear=10,intelligence=50)
 
 
 characters = [npc1,npc2,npc3,npc4,npc5]

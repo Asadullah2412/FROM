@@ -40,7 +40,7 @@ class world:
 
         # 2. Loop through NPCs
         for npc in self.npcs:
-            npc.act(self.locations) # 3. NPC moves , 5. NPC updates stats
+            npc.act(locations =self.locations) # 3. NPC moves , 5. NPC updates stats
             self.get_discovered_clues(npc) #6 update discoverd clues
 
         #7. check escape status
