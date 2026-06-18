@@ -37,14 +37,16 @@ class world:
             print('Need to find more clues')
             return False
 
-    def other_npcs(self,npc):
-        available_npcs = [n for n in self.npcs if n != npc]
-        return random.choice(available_npcs)
-    # dummy method above will be removed 
 
-    # def location_npc_check(self,current_location,npcs):
-    #     if map[current_location] > 1:
-    #         npcs.meet()
+
+    def location_npc_check(self,current_location,npc):
+        if len(self.town_map[current_location]) > 1:
+
+            other_npcs = [other for other in self.town_map[current_location] if other != npc]
+            npc.meet_npc(other_npcs)
+        else:
+            pass # later add 
+            
     
 
     def run_day(self):
@@ -61,17 +63,12 @@ class world:
                 self.town_map[current_location] = [npc]
             
             npc.act(current_location) # 3. NPC moves , 5. NPC updates stats
-        
+            self.location_npc_check(current_location=current_location,npc=npc)
             self.get_discovered_clues(npc) #6 update discoverd clues
 
-            print(self.town_map)
 
             # random_npc = self.other_npcs(npc=npc)
             # npc.meet_npc(other_npc = random_npc)
-
-
-
-
 
         #7. check escape status
         if self.escape_status() == True:
@@ -83,6 +80,7 @@ class world:
             self.day += 1
 
 
+        print(self.town_map)
         print(f"current day is {self.day}")
 
 

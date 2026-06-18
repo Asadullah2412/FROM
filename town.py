@@ -104,7 +104,7 @@ w1.add_predefined_npcs_locations(npcs=characters,locations=locations)
 
 w1.run_day()
 
-w1.display_world_content()
+# w1.display_world_content()
 
 # Quick test
 # n1 = characters[1]

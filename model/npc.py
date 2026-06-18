@@ -63,12 +63,22 @@ class NPC:
 
 #     meet_npc()
     def meet_npc(self,other_npc):
-        if self.trust >= 30:
-            self.share_clues(other_npc=other_npc)
-            self.increase_trust()
-            print(f"{self.name} has shared clues with {other_npc.name}")
-        else:
-            print(f"{self.name} does not trust {other_npc.name}")
+        
+        for npc in other_npc:
+            if npc.trust >=30:
+                self.share_clues(other_npc=npc)
+                self.increase_trust()
+                npc.increase_trust()
+                print(f"{self.name} has shared clues with {npc.name}")
+            else:
+                print(f"{self.name} does not trust {npc.name}")
+
+        # if self.trust >= 30:
+        #     self.share_clues(other_npc=other_npc)
+        #     self.increase_trust()
+        #     print(f"{self.name} has shared clues with {other_npc.name}")
+        # else:
+        #     print(f"{self.name} does not trust {other_npc.name}")
 
     
     def update_hunger_level(self):
