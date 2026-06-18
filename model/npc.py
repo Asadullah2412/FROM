@@ -38,26 +38,32 @@ class NPC:
         else:
             print(f'{self.name} failed to find anything in {location.name}')
             self.fear +=20
-    def update_hunger_level(self,work_rate):
 
-        if self.hunger >=100:
-            return False
-        else:
-            self.hunger += work_rate
+
+
+    def update_hunger_level(self):
+        self.hunger += 20
+
+    def check_hunger_level(self):
+
+        if self.hunger >=80:
+            print("Hungry !!! find food")
             return True
+        else:
+            print("not so hungry")
+            return False
 
     def move(self,location):
         
-        if self.hunger_level():
-            pass
-        # continue here 
-        self.intelligence += location.Knowledge_level
-        self.search_clue(location=location)
-        self.fear += location.fear
-        self.hunger -= location.food_supply
+        if self.check_hunger_level() == False:     
         
-        print(f'{self.name} is currently in {location.name}')
-        print(f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}')
+            self.intelligence += location.knowledge_value
+            self.search_clue(location=location)
+            self.fear += location.danger # update this 
+            self.hunger -= location.food_supply
+        
+            print(f'{self.name} is currently in {location.name}')
+            print(f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}')
 
     
     

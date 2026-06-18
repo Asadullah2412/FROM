@@ -72,13 +72,13 @@ diner = Location(clues=['A overheard conversation: someone escaped… but return
 colony_house = Location(clues=['Old resident list with names crossed out mysteriously',
 'Basement note: We tried the tunnel. Only 3 came back.',
 'Hidden wall panel with carved tally marks (days trapped)',
-'Blueprint of town layout with missing exit route'],knowledge_value=5,food_supply=-40,name='colony house',danger=80)
+'Blueprint of town layout with missing exit route'],knowledge_value=5,food_supply=20,name='colony house',danger=80)
 
 
 barn =  Location(clues=['Animal behavior log showing livestock panic before disappearances',
 'Strange claw marks too large for any known animal',
 'Hanging lantern that flickers when someone lies nearby',
-'Hidden floorboards revealing buried metal hatch'],knowledge_value=5,food_supply=-20,name='barn',danger=90)
+'Hidden floorboards revealing buried metal hatch'],knowledge_value=5,food_supply=30,name='barn',danger=90)
 
 
 hospital = Location(clues=['Patient log mentioning non-human night visitors',

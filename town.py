@@ -1,5 +1,5 @@
 from model.place import locations,Location
-from model.npc import characters
+from model.npc import characters,NPC
 import random
 
 # print('all the locations in the town ')
@@ -59,16 +59,26 @@ import random
 
 # location testing ahead ⚠️⚠️⚠️
 
-l1 = Location(name='Home',danger=75,knowledge_value=27,food_supply=38,clues=[1,2,3])
+# l1 = Location(name='Home',danger=75,knowledge_value=27,food_supply=38,clues=[1,2,3])
 
-l1.add_neighbors(new_neighbors=['left','right','back','center'])
-print(">>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<")
-clue_random = l1.get_random_clue()
-print(clue_random)
-print("_____________________________________")
-n1 = l1.get_neighbors()
-print(n1)
+# l1.add_neighbors(new_neighbors=['left','right','back','center'])
 # print(">>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<")
-l1.is_dangerous()
-print(">>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<")
-l1.show_location_info()
+# clue_random = l1.get_random_clue()
+# print(clue_random)
+# print("_____________________________________")
+# n1 = l1.get_neighbors()
+# print(n1)
+# # print(">>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<")
+# l1.is_dangerous()
+# print(">>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<")
+# l1.show_location_info()
+
+
+# NPC hunger method test ahead ⚠️⚠️
+
+loc1 = locations[0]
+
+n1 = NPC(name='lala',age=18,hunger=20,fear=10,intelligence=45)
+
+n1.move(location=loc1)
+n1.stats()
