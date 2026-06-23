@@ -48,6 +48,9 @@ class NPC:
 # share_clue()
     def share_clues(self,other_npc):
 
+        # if len(self.clues) == 0:
+
+
         other_npc.clues.extend(self.clues)
 
 # increase_trust()
@@ -69,7 +72,7 @@ class NPC:
                 self.share_clues(other_npc=npc)
                 self.increase_trust()
                 npc.increase_trust()
-                print(f"{self.name} has shared clues with {npc.name}")
+                print(f"{npc.name} has shared clues with {self.name}")
             else:
                 print(f"{self.name} does not trust {npc.name}")
 
