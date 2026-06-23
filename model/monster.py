@@ -55,8 +55,6 @@ class Monster:
 
     def detect_npc(self,town_map,current_location):
         
-
-
         if len(town_map[current_location]) > 0:
             for npc in town_map[current_location]:
                 self.victims.append(npc)
@@ -66,9 +64,14 @@ class Monster:
             print("monster has not found anyone")
 
             
+    def cause_fear(self,npc):
 
-                 
-        # pass
+        if npc.health >=80:
+            npc.monster_seen(damage= self.strength,fear_aura = self.fear_Aura)
+        
+        else:
+            npc.monster_seen(damage =(self.strength/4),fear_aura = (self.fear_Aura * 3))
+            
 
 
 
@@ -82,6 +85,13 @@ class Monster:
         
         # 2. detect npc
         self.detect_npc(town_map=town_map,current_location=location_choice)
+        # 3. cause fear 
+        for victim in self.victims:
+
+            self.cause_fear(victim)
+
+
+
 
 
 

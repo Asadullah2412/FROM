@@ -10,6 +10,7 @@ class NPC:
         self.fear = fear
         self.intelligence =intelligence
         self.clues = []
+        self.monster_sights = 0
         self.health = health
     
     def __repr__(self):
@@ -104,18 +105,41 @@ class NPC:
         self.fear += (location.danger // 10)
         return self.fear
     
-    def decrease_health(self,damage):
+    # def decrease_health(self,damage):
+
+    #     self.health -= damage
+
+    # def increase_health(self,recover):
+
+    #     self.health += recover
+
+    def monster_seen(self,damage,fear_aura):
 
         self.health -= damage
+        self.fear +=  fear_aura
 
-    def increase_health(self,recover):
+        print(f'{self.name} has encountered the monster')
 
-        self.health += recover
+        if self.health <= 0:
+            print(f"{self.name} has died")
+
+        elif self.health <= 10 :
+            print(f'{self.name} is in critical health , he might die if not treated quickly ,  he saw the monster this many times {self.monster_sights}')
+            self.monster_sights +=1
+        elif self.health > 10 and self.fear > 50:
+            self.monster_sights +=1
+            print(f"{self.name} has seen the monster this many  time  {self.monster_sights} and it has really scared him")
+        
+        
+    
+ 
+        
 
     def rest(self):
 
         self.hunger = 10
         self.fear -=30
+        self.health +=50
 
 
 
@@ -148,10 +172,10 @@ class NPC:
         
 # dummy for test
 npc1 = NPC(name='npc1',trust=40,age='27',hunger=20,fear=40,intelligence=20,health=100)
-npc2 = NPC(name='npc2',trust=10,age='57',hunger=50,fear=10,intelligence=50,health=100)
-npc3 = NPC(name='npc3',trust=60,age='37',hunger=10,fear=30,intelligence=40,health=100)
+npc2 = NPC(name='npc2',trust=10,age='57',hunger=50,fear=10,intelligence=50,health=40)
+npc3 = NPC(name='npc3',trust=60,age='37',hunger=10,fear=30,intelligence=40,health=50)
 npc4 = NPC(name='npc4',trust=30,age='17',hunger=20,fear=30,intelligence=10,health=100)
-npc5 = NPC(name='npc5',trust=80,age='47',hunger=30,fear=10,intelligence=50,health=100)
+npc5 = NPC(name='npc5',trust=80,age='47',hunger=30,fear=10,intelligence=50,health=70)
 
 
 characters = [npc1,npc2,npc3,npc4,npc5]
