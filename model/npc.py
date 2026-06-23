@@ -2,7 +2,7 @@ import random
 
 class NPC:
     
-    def __init__(self,name,age,hunger,fear,intelligence,trust):
+    def __init__(self,name,age,hunger,fear,intelligence,trust,health):
         self.name = name
         self.age = age
         self.trust = trust
@@ -10,6 +10,7 @@ class NPC:
         self.fear = fear
         self.intelligence =intelligence
         self.clues = []
+        self.health = health
     
     def __repr__(self):
 
@@ -26,6 +27,7 @@ class NPC:
         print('npc Fear : ',self.fear)
         print('npc intelligence : ',self.intelligence)
         print('npc Hunger : ',self.hunger)
+        print('npc Health : ',self.health)
 
     def search_clue(self,location):
         if random.random() < (self.intelligence/100):
@@ -101,6 +103,14 @@ class NPC:
 
         self.fear += (location.danger // 10)
         return self.fear
+    
+    def decrease_health(self,damage):
+
+        self.health -= damage
+
+    def increase_health(self,recover):
+
+        self.health += recover
 
     def rest(self):
 
@@ -137,11 +147,11 @@ class NPC:
 
         
 # dummy for test
-npc1 = NPC(name='npc1',trust=40,age='27',hunger=20,fear=40,intelligence=20)
-npc2 = NPC(name='npc2',trust=10,age='57',hunger=50,fear=10,intelligence=50)
-npc3 = NPC(name='npc3',trust=60,age='37',hunger=10,fear=30,intelligence=40)
-npc4 = NPC(name='npc4',trust=30,age='17',hunger=20,fear=30,intelligence=10)
-npc5 = NPC(name='npc5',trust=80,age='47',hunger=30,fear=10,intelligence=50)
+npc1 = NPC(name='npc1',trust=40,age='27',hunger=20,fear=40,intelligence=20,health=100)
+npc2 = NPC(name='npc2',trust=10,age='57',hunger=50,fear=10,intelligence=50,health=100)
+npc3 = NPC(name='npc3',trust=60,age='37',hunger=10,fear=30,intelligence=40,health=100)
+npc4 = NPC(name='npc4',trust=30,age='17',hunger=20,fear=30,intelligence=10,health=100)
+npc5 = NPC(name='npc5',trust=80,age='47',hunger=30,fear=10,intelligence=50,health=100)
 
 
 characters = [npc1,npc2,npc3,npc4,npc5]

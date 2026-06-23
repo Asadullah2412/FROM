@@ -1,6 +1,7 @@
 from model.place import locations,Location
 from model.npc import characters,NPC
 from world.engine import world
+from model.monster import monster
 import random
 
 
@@ -100,7 +101,7 @@ w1 = world(day=1,isDay=True)
 # w1.npcs.extend(characters)
 # w1.locations.extend(locations)
 
-w1.add_predefined_npcs_locations(npcs=characters,locations=locations)
+w1.add_predefined_npcs_locations_monsters(npcs=characters,locations=locations,monsters=monster)
 
 w1.run_day()
 

@@ -13,7 +13,7 @@ class world:
         self.isDay = isDay
         self.events = []
         self.npcs = []
-        self.monster =[] # adding this later
+        self.monsters = [] # adding this later
         self.locations = []
         self.global_clues = 20
         self.discovered_clues = []
@@ -69,6 +69,8 @@ class world:
 
             # random_npc = self.other_npcs(npc=npc)
             # npc.meet_npc(other_npc = random_npc)
+        #  xx monster hunts 
+        self.monsters[0].hunt(self.town_map)
 
         #7. check escape status
         if self.escape_status() == True:
@@ -94,9 +96,17 @@ class world:
             print(f"it was night now its day")
 
     
-    def add_predefined_npcs_locations(self,npcs,locations):
+    def add_predefined_npcs_locations_monsters(self,npcs,locations,monsters):
         self.npcs.extend(npcs)
         self.locations.extend(locations)
+
+        # if len(monsters) > 1:
+# 
+            # self.monsters.extend(monsters)
+        # else:
+
+
+        self.monsters.append(monsters) # duct tape fix later once you decide the num of monsters 
 
 
     def add_npc(self):
@@ -114,6 +124,8 @@ class world:
         else:
             self.npcs.append(npc)
             print('Npc created')
+
+    # could use add monster 
 
     def add_location(self):
 
