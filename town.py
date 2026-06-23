@@ -103,7 +103,9 @@ w1 = world(day=1,isDay=True)
 
 w1.add_predefined_npcs_locations_monsters(npcs=characters,locations=locations,monsters=monster)
 
-w1.run_day()
+for i in range(4):
+
+    w1.run_day()
 
 # w1.display_world_content()
 
@@ -112,3 +114,10 @@ w1.run_day()
 # n2 = characters[0]
 
 # n1.meet_npc(other_npc=n2)
+
+
+# bug fix remaining  
+# Dead NPC cleanup
+# Daily location reset
+# Duplicate clue sharing
+# Duplicate monster 
