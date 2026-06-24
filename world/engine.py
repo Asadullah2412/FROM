@@ -18,6 +18,7 @@ class world:
         self.global_clues = 20
         self.discovered_clues = []
         self.town_map = {}
+        self.dead_npc = []
 
 
     def get_discovered_clues(self,npc):
@@ -46,43 +47,58 @@ class world:
             npc.meet_npc(other_npcs)
         else:
             pass # later add 
-            
+    
+
     
 
     def run_day(self):
 
         # 1. Print current day
         print(f"current day is {self.day}")
+        self.town_map.clear()
         # 2. Loop through NPCs
+
         for npc in self.npcs:
-            current_location = random.choice(self.locations)
-            
-            if current_location in self.town_map:
-                self.town_map[current_location].append(npc)
+
+            if npc.is_dead == False:
+
+                current_location = random.choice(self.locations)
+                
+                if current_location in self.town_map:
+                    self.town_map[current_location].append(npc)
+                else:
+                    self.town_map[current_location] = [npc]
+                
+
+                npc.act(current_location) # 3. NPC moves , 5. NPC updates stats
+                self.location_npc_check(current_location=current_location,npc=npc)
+                self.get_discovered_clues(npc) #6 update discoverd clues
+                
             else:
-                self.town_map[current_location] = [npc]
-            
-            npc.act(current_location) # 3. NPC moves , 5. NPC updates stats
-            self.location_npc_check(current_location=current_location,npc=npc)
-            self.get_discovered_clues(npc) #6 update discoverd clues
+                self.dead_npc.append(npc)
+                self.npcs.remove(npc)
 
-
+            # for npc in self.npcs:
+            #     if npc.is_dead == False:
+        self.monsters[0].hunt(self.town_map)
             # random_npc = self.other_npcs(npc=npc)
             # npc.meet_npc(other_npc = random_npc)
         #  xx monster hunts 
-        self.monsters[0].hunt(self.town_map)
+            
 
         #7. check escape status
         if self.escape_status() == True:
             print("HURRAY!!!!")
         else:
-
             # 8. Advance time
             self.advance_time()
+            
             self.day += 1
 
 
-        print(self.town_map)
+        print(self.town_map,"\n>>>>>>>>>>>>><<<<<<<<<<<<<<<")
+        # self.town_map.clear()
+        print('dead npc ',self.dead_npc)
         print(f"current day is {self.day}")
 
 

@@ -103,19 +103,34 @@ w1 = world(day=1,isDay=True)
 
 w1.add_predefined_npcs_locations_monsters(npcs=characters,locations=locations,monsters=monster)
 
+# for i in range(4):
+
+#     w1.run_day()
+
+# w1.display_world_content()
+
+# npc3 = NPC(name='npc3',trust=60,age='37',hunger=10,fear=30,intelligence=40,health=-20)
+# npc4 = NPC(name='npc4',trust=30,age='17',hunger=20,fear=30,intelligence=10,health=100)
+# npc5 = NPC(name='npc5',trust=80,age='47',hunger=30,fear=10,intelligence=50,health=0)
+
+# lpc = [npc3,npc4,npc5]
+# w1.add_predefined_npcs_locations_monsters(npcs=lpc,locations=locations,monsters=monster)
+
 for i in range(4):
 
     w1.run_day()
 
-# w1.display_world_content()
-
-
+# for ll in lpc:
+#     print(ll.is_dead()) 
 
 # n1.meet_npc(other_npc=n2)
 
 
 # bug fix remaining  
-# Dead NPC cleanup
-# Daily location reset
-# Duplicate clue sharing
-# Duplicate monster 
+
+# Dead NPC cleanup +1
+
+# Daily location reset +1
+# Duplicate clue sharing +1
+
+# Duplicate monster  +1

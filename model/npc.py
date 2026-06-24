@@ -12,6 +12,7 @@ class NPC:
         self.clues = []
         self.monster_sights = 0
         self.health = health
+        self.is_dead = False
     
     def __repr__(self):
 
@@ -121,7 +122,9 @@ class NPC:
         print(f'{self.name} has encountered the monster')
 
         if self.health <= 0:
+            self.is_dead = True
             print(f"{self.name} has died")
+
 
         elif self.health <= 10 :
             print(f'{self.name} is in critical health , he might die if not treated quickly ,  he saw the monster this many times {self.monster_sights}')
@@ -132,7 +135,11 @@ class NPC:
         
         
     
- 
+    # def is_dead(self):
+    #     if self.health <= 0:
+    #         return True
+    #     else:
+    #         return False
         
 
     def rest(self):
