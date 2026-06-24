@@ -32,7 +32,7 @@ class Monster:
         self.agression = agression
         self.strength = strength
         self.fear_Aura = fear_Aura
-        self.victims = []
+        self.victims = set()
 
     def __repr__(self):
 
@@ -57,7 +57,7 @@ class Monster:
         
         if len(town_map[current_location]) > 0:
             for npc in town_map[current_location]:
-                self.victims.append(npc)
+                self.victims.add(npc)
                 #  aftermath add later ryt now print it 
             print(f"monster has seen these : {self.victims}")
         else:

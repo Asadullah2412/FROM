@@ -109,9 +109,7 @@ for i in range(4):
 
 # w1.display_world_content()
 
-# Quick test
-# n1 = characters[1]
-# n2 = characters[0]
+
 
 # n1.meet_npc(other_npc=n2)
 
