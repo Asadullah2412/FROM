@@ -167,7 +167,7 @@ class NPC:
     
         # print(f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}')
 
-        return f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}'
+        return f'{self.name} has examined the {location.name} and have found these many clues {len(self.clues)}'
 
 
     def act(self,location):

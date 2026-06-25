@@ -1,6 +1,6 @@
 from model.place import locations,Location
 from model.npc import characters,NPC
-from world.engine import world
+from model.engine import world
 from model.monster import monster
 import random
 
