@@ -11,7 +11,7 @@ class world:
     def __init__(self,day,isDay):
         self.day =day
         self.isDay = isDay
-        self.events = []
+        self.events = {}
         self.npcs = []
         self.monsters = [] # adding this later
         self.locations = []
@@ -25,10 +25,16 @@ class world:
 
         if len(npc.clues) == 0:
             print(f"this {npc.name} has no clues ")
+
         else:
-            self.discovered_clues.extend(npc.clues)
-        
-        return self.discovered_clues
+            for clue in npc.clues:
+
+                if clue in self.discovered_clues:
+                    return self.discovered_clues
+                else:
+                    return self.discovered_clues.append(clue)
+
+
 
     def escape_status(self):
         if len(self.discovered_clues) == self.global_clues:
@@ -70,7 +76,8 @@ class world:
                     self.town_map[current_location] = [npc]
                 
 
-                npc.act(current_location) # 3. NPC moves , 5. NPC updates stats
+                npc_event  = npc.act(current_location) # 3. NPC moves , 5. NPC updates stats
+                self.log_event(day=self.day,new_event=npc_event)
                 self.location_npc_check(current_location=current_location,npc=npc)
                 self.get_discovered_clues(npc) #6 update discoverd clues
                 
@@ -162,12 +169,21 @@ class world:
     def display_world_content(self):
 
         print(f"players are {len(self.npcs)}")
-        print(f"monster are {self.monster}")
+        print(f"monster are {self.monsters}")
         print(f"Locations are {self.locations}")
         print(f'the events which occured are {self.events}')
         print(f'escape status = {len(self.discovered_clues)} / {self.global_clues}')
+        print(f'The map of town is {self.town_map}')
 
     
-    def log_event(self,new_event):
-        self.events.append(new_event)
+    def log_event(self,day,new_event):
+
+        if day in self.events:
+            self.events[day].append(new_event)
+        else:
+            self.events[day] = [new_event]
+
+
+
+        
 

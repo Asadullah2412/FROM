@@ -88,9 +88,9 @@ class Monster:
         location_choice = self.spawn(town_map=town_map)
         
         # 2. detect npc
-        cn = self.detect_npc(town_map=town_map,current_location=location_choice)
+        current_npc_at_location = self.detect_npc(town_map=town_map,current_location=location_choice)
         # 3. cause fear 
-        for victim in cn:
+        for victim in current_npc_at_location:
 
             self.cause_fear(victim)
 

@@ -13,6 +13,7 @@ class NPC:
         self.monster_sights = 0
         self.health = health
         self.is_dead = False
+        self.current_location = ''
     
     def __repr__(self):
 
@@ -123,16 +124,19 @@ class NPC:
 
         if self.health <= 0:
             self.is_dead = True
-            print(f"{self.name} has died")
+            # print(f"{self.name} has died")
+            return f"{self.name} has died"
 
 
         elif self.health <= 10 :
-            print(f'{self.name} is in critical health , he might die if not treated quickly ,  he saw the monster this many times {self.monster_sights}')
+            # print(f'{self.name} is in critical health , he might die if not treated quickly ,  he saw the monster this many times {self.monster_sights}')
             self.monster_sights +=1
+            return print(f'{self.name} is in critical health , he might die if not treated quickly ,  he saw the monster this many times {self.monster_sights}')
         elif self.health > 10 and self.fear > 50:
             self.monster_sights +=1
-            print(f"{self.name} has seen the monster this many  time  {self.monster_sights} and it has really scared him")
-        
+
+            # print(f"{self.name} has seen the monster this many  time  {self.monster_sights} and it has really scared him")
+            return print(f"{self.name} has seen the monster this many  time  {self.monster_sights} and it has really scared him")
         
     
     # def is_dead(self):
@@ -148,30 +152,35 @@ class NPC:
         self.fear -=30
         self.health +=50
 
+        return f'{self.name} is resting'
+
 
 
     def move(self,location):
-           
-        print(f'{self.name} is currently in {location.name}')
         
+        print(f'{self.name} is currently in {location.name}')
+        self.current_location = location.name
         self.intelligence += location.knowledge_value
         self.search_clue(location=location)
         self.fear += self.update_fear(location)
         self.hunger -= location.food_supply
     
-        print(f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}')
+        # print(f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}')
+
+        return f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}'
 
 
     def act(self,location):
         
         if self.check_hunger_level() == False:
             
-            self.move(location=location)
+            action = self.move(location=location)
+            
             
         else:
-            self.rest()
+            action = self.rest()
 
-
+        return action
         
 
         
@@ -179,10 +188,16 @@ class NPC:
         
 # dummy for test
 npc1 = NPC(name='npc1',trust=40,age='27',hunger=20,fear=40,intelligence=20,health=100)
-npc2 = NPC(name='npc2',trust=10,age='57',hunger=50,fear=10,intelligence=50,health=40)
-npc3 = NPC(name='npc3',trust=60,age='37',hunger=10,fear=30,intelligence=40,health=50)
-npc4 = NPC(name='npc4',trust=30,age='17',hunger=20,fear=30,intelligence=10,health=100)
-npc5 = NPC(name='npc5',trust=80,age='47',hunger=30,fear=10,intelligence=50,health=70)
+npc2 = NPC(name='npc2',trust=40,age='27',hunger=20,fear=40,intelligence=20,health=100)
+npc3 = NPC(name='npc3',trust=10,age='57',hunger=50,fear=10,intelligence=50,health=40)
+npc4 = NPC(name='npc4',trust=10,age='57',hunger=50,fear=10,intelligence=50,health=40)
+npc5 = NPC(name='npc5',trust=60,age='37',hunger=10,fear=30,intelligence=40,health=50)
+# npc6 = NPC(name='npc6',trust=60,age='37',hunger=10,fear=30,intelligence=40,health=50)
+# npc7 = NPC(name='npc7',trust=30,age='17',hunger=20,fear=30,intelligence=10,health=100)
+# npc8 = NPC(name='npc8',trust=30,age='17',hunger=20,fear=30,intelligence=10,health=100)
+# npc9 = NPC(name='npc9',trust=80,age='47',hunger=30,fear=10,intelligence=50,health=70)
+# npc10 = NPC(name='npc10',trust=80,age='47',hunger=30,fear=10,intelligence=50,health=70)
 
 
+# characters = [npc1,npc2,npc3,npc4,npc5,npc6,npc7,npc8,npc9,npc10,]
 characters = [npc1,npc2,npc3,npc4,npc5]

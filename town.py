@@ -117,8 +117,14 @@ w1.add_predefined_npcs_locations_monsters(npcs=characters,locations=locations,mo
 # w1.add_predefined_npcs_locations_monsters(npcs=lpc,locations=locations,monsters=monster)
 
 for i in range(4):
-
+    print("\n\n\n")
     w1.run_day()
+
+
+
+# w1.run_day()
+print("\n\n\n")
+w1.display_world_content()
 
 # for ll in lpc:
 #     print(ll.is_dead()) 
