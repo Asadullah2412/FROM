@@ -33,6 +33,7 @@ class Monster:
         self.strength = strength
         self.fear_Aura = fear_Aura
         self.victims = set()
+        
 
     def __repr__(self):
 
@@ -54,13 +55,15 @@ class Monster:
 
 
     def detect_npc(self,town_map,current_location):
-        current_npc = []
+        current_npcs = []
         if len(town_map[current_location]) > 0:
             for npc in town_map[current_location]:
-                current_npc.append(npc)
-                return current_npc
-                #  aftermath add later ryt now print it 
-            print(f"monster has seen these : {current_npc}")
+                current_npcs.append(npc)
+            
+            # return current_npcs
+                
+            print(f"monster has seen these : {current_npcs}")
+            return current_npcs
         else:
             print("monster has not found anyone")
 
@@ -81,16 +84,21 @@ class Monster:
 
     def hunt (self,town_map):
 
+
+
         # this decide what monster should do 
 
-        # pre-data 
+        # pre-data
+        npcs_at_location = [] 
         # 1. spawn 
         location_choice = self.spawn(town_map=town_map)
         
         # 2. detect npc
-        current_npc_at_location = self.detect_npc(town_map=town_map,current_location=location_choice)
+        # npcs_at_location.extend(self.detect_npc(town_map=town_map,current_location=location_choice))
+        cnpc = self.detect_npc(town_map=town_map,current_location=location_choice)
+        # print(cnpc)
         # 3. cause fear 
-        for victim in current_npc_at_location:
+        for victim in cnpc:
 
             self.cause_fear(victim)
 

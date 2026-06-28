@@ -1,6 +1,65 @@
 # world = base crust of a pizza 
 # verry important
 
+
+# {
+#     "day": 5,
+#     "is_day": True,
+
+#     "escape": {
+#         "found": 12,
+#         "required": 20
+#     },
+
+#     "monster": {
+#         "location": "church",
+#         "victims": ["npc2", "npc5"]
+#     },
+
+#     "npcs": [
+#         {
+#             "name": "npc1",
+#             "health": 90,
+#             "fear": 30,
+#             "location": "forest",
+#             "clues": 3
+#         },
+#         {
+#             "name": "npc2",
+#             "health": 40,
+#             "fear": 95,
+#             "location": "church",
+#             "clues": 5
+#         }
+#     ],
+
+#     "locations": [
+#         {
+#             "name": "church",
+#             "danger": 50
+#         },
+#         {
+#             "name": "forest",
+#             "danger": 80
+#         }
+#     ]
+# }
+
+# this is how you have to return 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import copy
 import random
 

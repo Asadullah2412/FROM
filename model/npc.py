@@ -14,6 +14,7 @@ class NPC:
         self.health = health
         self.is_dead = False
         self.current_location = ''
+        self.npc_info = {}
     
     def __repr__(self):
 
@@ -24,13 +25,15 @@ class NPC:
         print(f'hi im {self.name} and i have these many clues {self.clues}')
 
     def stats(self):
-        print('npc name : ' ,self.name)
-        print('npc age : ',self.age)
-        print('npc clue : ',self.clues)
-        print('npc Fear : ',self.fear)
-        print('npc intelligence : ',self.intelligence)
-        print('npc Hunger : ',self.hunger)
-        print('npc Health : ',self.health)
+        self.npc_info['npc name'] = self.name
+        self.npc_info['npc age'] = self.age
+        self.npc_info['current location'] = self.current_location
+        self.npc_info['npc clue: '] = self.clues
+        self.npc_info['npc Fear'] = self.fear
+        self.npc_info['npc intelligence'] = self.intelligence
+        self.npc_info['npc Hunger'] = self.hunger
+        self.npc_info['npc Health'] = self.health
+        return self.npc_info
 
     def search_clue(self,location):
         if random.random() < (self.intelligence/100):
@@ -53,10 +56,12 @@ class NPC:
 # share_clue()
     def share_clues(self,other_npc):
 
-        # if len(self.clues) == 0:
+        if len(self.clues) == 0:
+            return f'{self.name} has zero clues so it cant share'
 
+        else:
 
-        other_npc.clues.extend(self.clues)
+            other_npc.clues.extend(self.clues)
 
 # increase_trust()
     def increase_trust(self):
@@ -77,7 +82,7 @@ class NPC:
                 self.share_clues(other_npc=npc)
                 self.increase_trust()
                 npc.increase_trust()
-                print(f"{npc.name} has shared clues with {self.name}")
+                print(f"{self.name} has shared clues with {npc.name}")
             else:
                 print(f"{self.name} does not trust {npc.name}")
 
@@ -131,12 +136,12 @@ class NPC:
         elif self.health <= 10 :
             # print(f'{self.name} is in critical health , he might die if not treated quickly ,  he saw the monster this many times {self.monster_sights}')
             self.monster_sights +=1
-            return print(f'{self.name} is in critical health , he might die if not treated quickly ,  he saw the monster this many times {self.monster_sights}')
+            return f'{self.name} is in critical health , he might die if not treated quickly ,  he saw the monster this many times {self.monster_sights}'
         elif self.health > 10 and self.fear > 50:
             self.monster_sights +=1
 
             # print(f"{self.name} has seen the monster this many  time  {self.monster_sights} and it has really scared him")
-            return print(f"{self.name} has seen the monster this many  time  {self.monster_sights} and it has really scared him")
+            return f"{self.name} has seen the monster this many  time  {self.monster_sights} and it has really scared him"
         
     
     # def is_dead(self):
@@ -158,16 +163,18 @@ class NPC:
 
     def move(self,location):
         
-        print(f'{self.name} is currently in {location.name}')
+        # print(f'{self.name} is currently in {location.name}')
         self.current_location = location.name
         self.intelligence += location.knowledge_value
         self.search_clue(location=location)
         self.fear += self.update_fear(location)
         self.hunger -= location.food_supply
+        self.stats()
     
         # print(f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}')
 
-        return f'{self.name} has examined the {location.name} and have found these many clues {len(self.clues)}'
+        # return f'{self.name} has examined the {location.name} and have found these many clues {len(self.clues)}'
+        return f'{self.name} status ==> {self.npc_info}'
 
 
     def act(self,location):
@@ -192,6 +199,7 @@ npc2 = NPC(name='npc2',trust=40,age='27',hunger=20,fear=40,intelligence=20,healt
 npc3 = NPC(name='npc3',trust=10,age='57',hunger=50,fear=10,intelligence=50,health=40)
 npc4 = NPC(name='npc4',trust=10,age='57',hunger=50,fear=10,intelligence=50,health=40)
 npc5 = NPC(name='npc5',trust=60,age='37',hunger=10,fear=30,intelligence=40,health=50)
+# more npcs
 # npc6 = NPC(name='npc6',trust=60,age='37',hunger=10,fear=30,intelligence=40,health=50)
 # npc7 = NPC(name='npc7',trust=30,age='17',hunger=20,fear=30,intelligence=10,health=100)
 # npc8 = NPC(name='npc8',trust=30,age='17',hunger=20,fear=30,intelligence=10,health=100)
@@ -199,5 +207,5 @@ npc5 = NPC(name='npc5',trust=60,age='37',hunger=10,fear=30,intelligence=40,healt
 # npc10 = NPC(name='npc10',trust=80,age='47',hunger=30,fear=10,intelligence=50,health=70)
 
 
-# characters = [npc1,npc2,npc3,npc4,npc5,npc6,npc7,npc8,npc9,npc10,]
 characters = [npc1,npc2,npc3,npc4,npc5]
+# characters = [npc1,npc2,npc3,npc4,npc5,npc6,npc7,npc8,npc9,npc10,]

@@ -116,15 +116,17 @@ w1.add_predefined_npcs_locations_monsters(npcs=characters,locations=locations,mo
 # lpc = [npc3,npc4,npc5]
 # w1.add_predefined_npcs_locations_monsters(npcs=lpc,locations=locations,monsters=monster)
 
-for i in range(4):
+for i in range(1):
     print("\n\n\n")
     w1.run_day()
 
+# for npc in characters:
+#     print(npc.stats())
+    # print("\n")
 
-
+# print("\n\n\n")
 # w1.run_day()
-print("\n\n\n")
-w1.display_world_content()
+# w1.display_world_content()
 
 # for ll in lpc:
 #     print(ll.is_dead()) 
