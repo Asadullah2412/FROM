@@ -44,7 +44,7 @@ class Monster:
     def spawn(self,town_map):
         # 
         current_location = random.choice(list(town_map))
-        print(f"{self.name} is in {current_location}")
+        # print(f"{self.name} is in {current_location}"
         return current_location
         
 
@@ -62,7 +62,7 @@ class Monster:
             
             # return current_npcs
                 
-            print(f"monster has seen these : {current_npcs}")
+            # print(f"monster has seen these : {current_npcs}")
             return current_npcs
         else:
             print("monster has not found anyone")

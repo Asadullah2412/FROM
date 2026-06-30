@@ -22,7 +22,7 @@ class NPC:
     
     def introduce(self):
 
-        print(f'hi im {self.name} and i have these many clues {self.clues}')
+        return f'hi im {self.name} and i have these many clues {self.clues}'
 
     def stats(self):
         self.npc_info['npc name'] = self.name
@@ -38,14 +38,14 @@ class NPC:
     def search_clue(self,location):
         if random.random() < (self.intelligence/100):
             clue =random.choice(location.clues)
-            print(f"{self.name} found {clue}")
+            # returnf"{self.name} found {clue}")
 
             if clue not in self.clues:
                 self.clues.append(clue)
             else:
-                print(f'{self.name} already knows this clue')
+                return f'{self.name} already knew this clue'
         else:
-            print(f'{self.name} failed to find anything in {location.name}')
+            return f'{self.name} failed to find anything in {location.name}'
             self.fear +=20
 
 
@@ -82,9 +82,9 @@ class NPC:
                 self.share_clues(other_npc=npc)
                 self.increase_trust()
                 npc.increase_trust()
-                print(f"{self.name} has shared clues with {npc.name}")
+                return f"{self.name} has shared clues with {npc.name}"
             else:
-                print(f"{self.name} does not trust {npc.name}")
+                return f"{self.name} does not trust {npc.name}"
 
         # if self.trust >= 30:
         #     self.share_clues(other_npc=other_npc)
@@ -125,7 +125,7 @@ class NPC:
         self.health -= damage
         self.fear +=  fear_aura
 
-        print(f'{self.name} has encountered the monster')
+        # print(f'{self.name} has encountered the monster')
 
         if self.health <= 0:
             self.is_dead = True
@@ -174,7 +174,7 @@ class NPC:
         # print(f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}')
 
         # return f'{self.name} has examined the {location.name} and have found these many clues {len(self.clues)}'
-        return f'{self.name} status ==> {self.npc_info}'
+        return {self.name : self.npc_info}
 
 
     def act(self,location):

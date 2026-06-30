@@ -83,7 +83,9 @@ class world:
     def get_discovered_clues(self,npc):
 
         if len(npc.clues) == 0:
-            print(f"this {npc.name} has no clues ")
+            # print(f"this {npc.name} has no clues ")
+            f"this {npc.name} has no clues "
+
 
         else:
             for clue in npc.clues:
@@ -97,10 +99,10 @@ class world:
 
     def escape_status(self):
         if len(self.discovered_clues) == self.global_clues:
-            print('Escaped')
+            # print('Escaped')
             return True
         else:
-            print('Need to find more clues')
+            # print('Need to find more clues')
             return False
 
 
@@ -119,7 +121,7 @@ class world:
     def run_day(self):
 
         # 1. Print current day
-        print(f"current day is {self.day}")
+        # print(f"current day is {self.day}")
         self.town_map.clear()
         # 2. Loop through NPCs
 
@@ -162,20 +164,25 @@ class world:
             self.day += 1
 
 
-        print(self.town_map,"\n>>>>>>>>>>>>><<<<<<<<<<<<<<<")
+        # print(self.town_map,"\n>>>>>>>>>>>>><<<<<<<<<<<<<<<")
+        self.log_event(day= self.day,new_event=self.town_map)
         # self.town_map.clear()
-        print('dead npc ',self.dead_npc)
-        print(f"current day is {self.day}")
+        # print('dead npc ',self.dead_npc)
+        self.log_event(day=self.day,new_event={'dead_npc':self.dead_npc})
+        # print(f"current day is {self.day}")
+        return self.events
 
 
     def advance_time(self):
 
         if self.isDay == True:
             self.isDay = False
-            print(f"it was day now its night")
+            # print(f"it was day now its night")
+            return self.isDay
         else:
             self.isDay = True
-            print(f"it was night now its day")
+            return self.isDay
+            # print(f"it was night now its day")
 
     
     def add_predefined_npcs_locations_monsters(self,npcs,locations,monsters):
