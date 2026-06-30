@@ -63,8 +63,8 @@
 import copy
 import random
 
-from model.npc import NPC
-from model.place import Location
+from engine.npc import NPC
+from engine.place import Location
 class world:
 
     def __init__(self,day,isDay):

@@ -1,9 +1,9 @@
-from model.place import locations,Location
-from model.npc import characters,NPC
-from model.engine import world
-from model.monster import monster
+from engine.place import locations,Location
+from engine.npc import characters,NPC
+from engine.world import world
+from engine.monster import monster
 import random
-from town import start_simulation
+from engine.town import start_simulation
 
 
 

@@ -273,3 +273,43 @@ World
     ├── run_day()
     ├── log_event()
     └── check_escape()
+
+
+    
+
+
+    
+
+Engine → contains all game rules and simulation logic.
+Services → coordinate operations and prepare data for the outside world.
+Routers → expose HTTP endpoints.
+main.py → assembles the application.
+
+
+
+project/
+│
+├── main.py
+│
+├── routers/
+│   ├── world_router.py
+│   ├── simulation_router.py
+│   ├── npc_router.py
+│   └── monster_router.py
+│
+├── services/
+│   ├── world_service.py
+│   ├── simulation_service.py
+│   ├── npc_service.py
+│   └── monster_service.py
+│
+├── engine/
+│   ├── world.py
+│   ├── simulation.py
+│   ├── npc.py
+│   ├── monster.py
+│   └── location.py
+│
+├── models/        # Pydantic request/response models
+│
+└── utils/
