@@ -62,6 +62,7 @@
 
 import copy
 import random
+import json
 
 from engine.npc import NPC
 from engine.place import Location
@@ -77,6 +78,11 @@ class world:
         self.global_clues = 20
         self.discovered_clues = []
         self.town_map = {}
+        self.s_town_map = []
+        self.predefined_town_map = {'church':0,
+                                    'diner':0
+                                    
+                                    }
         self.dead_npc = []
 
 
@@ -108,15 +114,19 @@ class world:
 
 
     def location_npc_check(self,current_location,npc):
-        if len(self.town_map[current_location]) > 1:
+        if len(self.town_map[current_location.name]) > 1:
 
-            other_npcs = [other for other in self.town_map[current_location] if other != npc]
+            other_npcs = [other for other in self.town_map[current_location.name] if other != npc]
             npc.meet_npc(other_npcs)
         else:
             pass # later add 
-    
 
-    
+    def serialize_town_map(self):
+        return {
+            location: [npc.name for npc in npcs]
+            for location, npcs in self.town_map.items()
+        }
+
 
     def run_day(self):
 
@@ -131,10 +141,10 @@ class world:
 
                 current_location = random.choice(self.locations)
                 
-                if current_location in self.town_map:
-                    self.town_map[current_location].append(npc)
+                if current_location.name in self.town_map:
+                    self.town_map[current_location.name].append(npc)
                 else:
-                    self.town_map[current_location] = [npc]
+                    self.town_map[current_location.name] = [npc]
                 
 
                 npc_event  = npc.act(current_location) # 3. NPC moves , 5. NPC updates stats
@@ -143,7 +153,7 @@ class world:
                 self.get_discovered_clues(npc) #6 update discoverd clues
                 
             else:
-                self.dead_npc.append(npc)
+                self.dead_npc.append(npc.name)
                 self.npcs.remove(npc)
 
             # for npc in self.npcs:
@@ -165,7 +175,14 @@ class world:
 
 
         # print(self.town_map,"\n>>>>>>>>>>>>><<<<<<<<<<<<<<<")
-        self.log_event(day= self.day,new_event=self.town_map)
+        # self.log_event(day= self.day,new_event=self.town_map)
+        self.s_town_map = self.serialize_town_map()
+        # self.s_town_map = json.dumps(self.town_map)
+        
+        # print("\n\n" ,self.town_map)
+        # print("\n\n" ,self.s_town_map)
+        self.log_event(day= self.day,new_event=self.s_town_map)
+        # self.log_event(day= self.day,new_event=self.town_map)
         # self.town_map.clear()
         # print('dead npc ',self.dead_npc)
         self.log_event(day=self.day,new_event={'dead_npc':self.dead_npc})
@@ -252,4 +269,3 @@ class world:
 
 
         
-

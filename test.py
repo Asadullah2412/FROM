@@ -3,7 +3,7 @@ from engine.npc import characters,NPC
 from engine.world import world
 from engine.monster import monster
 import random
-from engine.town import start_simulation
+# from engine.town import start_simulation
 
 
 
@@ -148,4 +148,7 @@ from engine.town import start_simulation
 # for i in range(1,days+1):
 #     print(i) 
 
-start_simulation(days=2)
+# start_simulation(days=2)
+
+for location in locations:
+    print(type(location.name))

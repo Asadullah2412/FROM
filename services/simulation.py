@@ -12,14 +12,18 @@ w1.add_predefined_npcs_locations_monsters(npcs=characters,locations=locations,mo
 
 
 def start_simulation(days):
-
+    result = []
     if days > 0:
 
         for day in range(1,days+1):
 
-            print(w1.run_day())
+            # print(w1.run_day())
+            result.append(w1.run_day())
+            
     else:
         return {'error' : "days should be greater than 0"}
+    
+    return result
 
 
 
