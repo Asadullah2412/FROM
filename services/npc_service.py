@@ -22,3 +22,5 @@ def add_npc(name,age,fear,intelligence,hunger,trust,health):
             w1.npcs.append(npc)
             # print('Npc created')
             return npc.stats()
+        
+        
