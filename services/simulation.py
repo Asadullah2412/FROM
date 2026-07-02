@@ -4,9 +4,8 @@ from engine.npc import characters,NPC
 from engine.world import world
 from engine.monster import monster
 import random
+from engine.town import w1
 
-w1 = world(day=1,isDay=True)
-w1.add_predefined_npcs_locations_monsters(npcs=characters,locations=locations,monsters=monster)
 
 #  town is used to  start , store simulation 
 
@@ -27,6 +26,3 @@ def start_simulation(days):
 
 
 
-def  town_info():
-    # return w1.
-    pass

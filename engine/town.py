@@ -1,8 +1,8 @@
-# from engine.place import locations,Location
-# from engine.npc import characters,NPC
-# from engine.world import world
-# from engine.monster import monster
-# import random
+from engine.place import locations,Location
+from engine.npc import characters,NPC
+from engine.world import world
+from engine.monster import monster
+import random
 
 # w1 = world(day=1,isDay=True)
 # w1.add_predefined_npcs_locations_monsters(npcs=characters,locations=locations,monsters=monster)
@@ -29,3 +29,8 @@
 
 # ⚠️⚠️⚠️⚠️⚠️
 # decide later 
+
+# world is defined here 
+
+w1 = world(day=1,isDay=True)
+w1.add_predefined_npcs_locations_monsters(npcs=characters,locations=locations,monsters=monster)

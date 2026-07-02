@@ -79,10 +79,7 @@ class world:
         self.discovered_clues = []
         self.town_map = {}
         self.s_town_map = []
-        self.predefined_town_map = {'church':0,
-                                    'diner':0
-                                    
-                                    }
+        
         self.dead_npc = []
 
 
@@ -165,10 +162,15 @@ class world:
             
 
         #7. check escape status
+        self.s_town_map = self.serialize_town_map()
+        self.log_event(day= self.day,new_event=self.s_town_map)
+        self.log_event(day=self.day,new_event={'dead_npc':self.dead_npc})
         if self.escape_status() == True:
             print("HURRAY!!!!")
         else:
             # 8. Advance time
+
+
             self.advance_time()
             
             self.day += 1
@@ -176,16 +178,15 @@ class world:
 
         # print(self.town_map,"\n>>>>>>>>>>>>><<<<<<<<<<<<<<<")
         # self.log_event(day= self.day,new_event=self.town_map)
-        self.s_town_map = self.serialize_town_map()
         # self.s_town_map = json.dumps(self.town_map)
         
         # print("\n\n" ,self.town_map)
         # print("\n\n" ,self.s_town_map)
-        self.log_event(day= self.day,new_event=self.s_town_map)
+        # self.log_event(day= self.day,new_event=self.s_town_map)
         # self.log_event(day= self.day,new_event=self.town_map)
         # self.town_map.clear()
         # print('dead npc ',self.dead_npc)
-        self.log_event(day=self.day,new_event={'dead_npc':self.dead_npc})
+        
         # print(f"current day is {self.day}")
         return self.events
 
