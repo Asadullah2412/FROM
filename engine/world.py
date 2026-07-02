@@ -153,11 +153,8 @@ class world:
                 self.dead_npc.append(npc.name)
                 self.npcs.remove(npc)
 
-            # for npc in self.npcs:
-            #     if npc.is_dead == False:
+
         self.monsters[0].hunt(self.town_map)
-            # random_npc = self.other_npcs(npc=npc)
-            # npc.meet_npc(other_npc = random_npc)
         #  xx monster hunts 
             
 
@@ -216,21 +213,7 @@ class world:
         self.monsters.append(monsters) # duct tape fix later once you decide the num of monsters 
 
 
-    def add_npc(self):
-
-        npc_name = input('Enter the name >>> ')
-        npc_age = int(input("Enter age >>> "))
-        npc_hunger =  int(input("Enter hunger >>> "))
-        npc_intelligence =  int(input("Enter intelligence >>> "))
-        npc_Fear =  int(input("Enter Fear >>> "))
-
-        npc = NPC(name=npc_name,age=npc_age,fear=npc_Fear,intelligence=npc_intelligence,hunger=npc_hunger)
-
-        if npc in self.npcs:
-            print('NPC already exists')
-        else:
-            self.npcs.append(npc)
-            print('Npc created')
+    # ⚠️⚠️⚠️⚠️⚠️⚠️⚠️
 
     # could use add monster 
 

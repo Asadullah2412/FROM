@@ -3,6 +3,7 @@ from engine.npc import characters,NPC
 from engine.world import world
 from engine.monster import monster
 import random
+from engine.town import w1
 # from engine.town import start_simulation
 
 
@@ -150,5 +151,8 @@ import random
 
 # start_simulation(days=2)
 
-for location in locations:
-    print(type(location.name))
+# for location in locations:
+#     print(type(location.name))
+
+
+# tpc = w1.npcs[]
