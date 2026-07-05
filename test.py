@@ -4,6 +4,7 @@ from engine.world import world
 from engine.monster import monster
 import random
 from engine.town import w1
+from services.simulation import start_simulation
 # from engine.town import start_simulation
 
 
@@ -149,7 +150,9 @@ from engine.town import w1
 # for i in range(1,days+1):
 #     print(i) 
 
-# start_simulation(days=2)
+x = start_simulation(days=5)
+
+print(len(x))
 
 # for location in locations:
 #     print(type(location.name))

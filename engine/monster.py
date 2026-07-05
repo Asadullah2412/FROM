@@ -76,7 +76,7 @@ class Monster:
 
             self.victims.add(npc.name)
         
-        if npc.health >=80:
+        elif npc.health >=80:
             action = npc.monster_seen(damage= self.strength,fear_aura = self.fear_Aura)
             
         
@@ -91,8 +91,6 @@ class Monster:
 
 
     def hunt (self,town_map):
-
-
 
         # this decide what monster should do 
 
@@ -113,7 +111,8 @@ class Monster:
 
         return self.actions
 
-
+    def display_victims(self):
+        return self.victims
 
 
 # dummy monsters

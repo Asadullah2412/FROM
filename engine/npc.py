@@ -132,7 +132,7 @@ class NPC:
         if self.health <= 0:
             self.is_dead = True
             # print(f"{self.name} has died")
-            return f"{self.name} has died"
+            return f'monster has slain {self.name} '
 
 
         elif self.health <= 10 :

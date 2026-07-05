@@ -117,7 +117,7 @@ class world:
             action = npc.meet_npc(other_npcs)
             return action
         else:
-            return f'{npc.name} does not have anyone in the location to share clues or collect clues'
+            return f'{npc.name} does not have anyone in the {current_location} to share clues or collect clues'
 
     def serialize_town_map(self):
         return {
@@ -131,6 +131,7 @@ class world:
         # 1. Print current day
         # print(f"current day is {self.day}")
         self.town_map.clear()
+        self.monsters[0].actions = []
         # self.events.clear()
         # 2. Loop through NPCs
 
@@ -153,9 +154,10 @@ class world:
                 
             else:
                 self.dead_npc.append(npc.name)
+                print(self.dead_npc)
                 self.npcs.remove(npc)
 
-
+        # self.monsters.action = []
         monster_action = self.monsters[0].hunt(self.town_map)
         # print(monster_action)
         self.log_event(day=self.day,new_event=monster_action,event_type='monster_actions')
