@@ -154,7 +154,7 @@ class world:
                 
             else:
                 self.dead_npc.append(npc.name)
-                print(self.dead_npc)
+                # print(self.dead_npc)
                 self.npcs.remove(npc)
 
         # self.monsters.action = []

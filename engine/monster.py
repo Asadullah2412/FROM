@@ -32,7 +32,7 @@ class Monster:
         self.agression = agression
         self.strength = strength
         self.fear_Aura = fear_Aura
-        self.victims = set()
+        # self.victims = set()
         self.actions = []
         
 
@@ -74,7 +74,8 @@ class Monster:
 
         if npc.is_dead == True:
 
-            self.victims.add(npc.name)
+            # self.victims.add(npc.name)
+            pass
         
         elif npc.health >=80:
             action = npc.monster_seen(damage= self.strength,fear_aura = self.fear_Aura)
@@ -111,8 +112,8 @@ class Monster:
 
         return self.actions
 
-    def display_victims(self):
-        return self.victims
+    # def display_victims(self):
+    #     return self.victims
 
 
 # dummy monsters
