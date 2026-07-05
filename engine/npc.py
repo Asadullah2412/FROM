@@ -15,6 +15,7 @@ class NPC:
         self.is_dead = False
         self.current_location = ''
         self.npc_info = {}
+        self.actions = []
     
     def __repr__(self):
 
@@ -42,11 +43,12 @@ class NPC:
 
             if clue not in self.clues:
                 self.clues.append(clue)
+                return f'{self.name} has found this clue : {clue}'
             else:
                 return f'{self.name} already knew this clue'
         else:
-            return f'{self.name} failed to find anything in {location.name}'
             self.fear +=20
+            return f'{self.name} failed to find anything in {location.name}'
 
 
 
@@ -156,8 +158,8 @@ class NPC:
         self.hunger = 10
         self.fear -=30
         self.health +=50
-
-        return f'{self.name} is resting'
+        self.actions.append(f'{self.name} is resting')
+        return self.actions
 
 
 
@@ -166,7 +168,7 @@ class NPC:
         # print(f'{self.name} is currently in {location.name}')
         self.current_location = location.name
         self.intelligence += location.knowledge_value
-        self.search_clue(location=location)
+        self.actions.append(self.search_clue(location=location))
         self.fear += self.update_fear(location)
         self.hunger -= location.food_supply
         self.stats()
@@ -174,7 +176,7 @@ class NPC:
         # print(f'{self.name} has examined the loaction and have found these many clues {len(self.clues)}')
 
         # return f'{self.name} has examined the {location.name} and have found these many clues {len(self.clues)}'
-        return {self.name : self.npc_info}
+        return self.actions
 
 
     def act(self,location):

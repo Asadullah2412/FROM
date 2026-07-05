@@ -313,3 +313,39 @@ project/
 ├── models/        # Pydantic request/response models
 │
 └── utils/
+
+
+
+uvicorn main:app --reload
+
+
+
+
+
+
+
+
+{
+  "npc_actions": [
+    {
+      "actor": "npc2",
+      "type": "share_clue",
+      "target": "npc1",
+      "message": "npc2 has shared clues with npc1"
+    }
+  ]
+}
+
+Flutter can still display message today.
+
+But later you'll be able to:
+
+animate clue sharing
+highlight npc2 and npc1
+play different sounds
+filter only monster events
+replay the simulation
+
+without parsing English sentences.
+
+You don't have to do this now. Just keep it in mind for later.

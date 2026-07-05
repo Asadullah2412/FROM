@@ -22,7 +22,9 @@ def start_simulation(days):
     else:
         return {'error' : "days should be greater than 0"}
     
-    return result
+
+
+    return result[0]  # returing only day 1 as output and rest as nextday 
 
 
 

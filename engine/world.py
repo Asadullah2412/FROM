@@ -114,9 +114,10 @@ class world:
         if len(self.town_map[current_location.name]) > 1:
 
             other_npcs = [other for other in self.town_map[current_location.name] if other != npc]
-            npc.meet_npc(other_npcs)
+            action = npc.meet_npc(other_npcs)
+            return action
         else:
-            pass # later add 
+            return f'{npc.name} does not have anyone in the location to share clues or collect clues'
 
     def serialize_town_map(self):
         return {
@@ -130,12 +131,13 @@ class world:
         # 1. Print current day
         # print(f"current day is {self.day}")
         self.town_map.clear()
+        # self.events.clear()
         # 2. Loop through NPCs
 
         for npc in self.npcs:
 
             if npc.is_dead == False:
-
+                npc.actions = []
                 current_location = random.choice(self.locations)
                 
                 if current_location.name in self.town_map:
@@ -144,9 +146,9 @@ class world:
                     self.town_map[current_location.name] = [npc]
                 
 
-                npc_event  = npc.act(current_location) # 3. NPC moves , 5. NPC updates stats
-                self.log_event(day=self.day,new_event=npc_event)
-                self.location_npc_check(current_location=current_location,npc=npc)
+                npc_actions  = npc.act(current_location) # 3. NPC moves , 5. NPC updates stats
+                npc_actions.append(self.location_npc_check(current_location=current_location,npc=npc))
+                self.log_event(day=self.day,new_event=npc_actions,event_type='npc_actions')
                 self.get_discovered_clues(npc) #6 update discoverd clues
                 
             else:
@@ -154,14 +156,17 @@ class world:
                 self.npcs.remove(npc)
 
 
-        self.monsters[0].hunt(self.town_map)
+        monster_action = self.monsters[0].hunt(self.town_map)
+        # print(monster_action)
+        self.log_event(day=self.day,new_event=monster_action,event_type='monster_actions')
         #  xx monster hunts 
             
 
         #7. check escape status
         self.s_town_map = self.serialize_town_map()
-        self.log_event(day= self.day,new_event=self.s_town_map)
-        self.log_event(day=self.day,new_event={'dead_npc':self.dead_npc})
+        # self.log_event(day= self.day,new_event=self.s_town_map)
+        # self.log_event(day=self.day,new_event={'dead_npc':self.dead_npc})
+        # snap = self.snapshot(day=self.day)
         if self.escape_status() == True:
             print("HURRAY!!!!")
         else:
@@ -172,19 +177,6 @@ class world:
             
             self.day += 1
 
-
-        # print(self.town_map,"\n>>>>>>>>>>>>><<<<<<<<<<<<<<<")
-        # self.log_event(day= self.day,new_event=self.town_map)
-        # self.s_town_map = json.dumps(self.town_map)
-        
-        # print("\n\n" ,self.town_map)
-        # print("\n\n" ,self.s_town_map)
-        # self.log_event(day= self.day,new_event=self.s_town_map)
-        # self.log_event(day= self.day,new_event=self.town_map)
-        # self.town_map.clear()
-        # print('dead npc ',self.dead_npc)
-        
-        # print(f"current day is {self.day}")
         return self.events
 
 
@@ -243,13 +235,37 @@ class world:
         print(f'The map of town is {self.town_map}')
 
     
-    def log_event(self,day,new_event):
+    # def log_event(self,day,new_event, action_name):
 
-        if day in self.events:
-            self.events[day].append(new_event)
-        else:
-            self.events[day] = [new_event]
+    #     if day not in self.events:
+    #         if action_name == 'npc_actions':
+
+    #             self.events[day]['npc_actions'].extend(new_event)
+    #         else:
+    #             self.events[day]['monster_action'].extend(new_event)
+    #     # else:
+    #     #     self.events[day] = {'npc_actions' :new_event}
+    #     #     self.events[day] = {'npc_actions' :[]}
+
+    def log_event(self, day, event_type, new_event):
+
+        if day not in self.events:
+            self.events[day] = {
+                'npc_actions': [],
+                'monster_actions': []
+            }
+
+        self.events[day][event_type].extend(new_event)
 
 
 
+    def snapshot(self,day):
+        snapshot = {
+        "npcs": self.npcs,
+        "town_map": self.s_town_map,
+        "dead_npcs": self.dead_npc,
+     "escape_progress": f'{len(self.discovered_clues)} / {self.global_clues}',
+        # "time": self.time
+            }
+        return snapshot
         

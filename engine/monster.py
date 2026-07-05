@@ -33,6 +33,7 @@ class Monster:
         self.strength = strength
         self.fear_Aura = fear_Aura
         self.victims = set()
+        self.actions = []
         
 
     def __repr__(self):
@@ -65,20 +66,27 @@ class Monster:
             # print(f"monster has seen these : {current_npcs}")
             return current_npcs
         else:
-            print("monster has not found anyone")
+            # print("monster has not found anyone")
+            return current_npcs
 
             
     def cause_fear(self,npc):
 
         if npc.is_dead == True:
-            pass
+
+            self.victims.add(npc.name)
         
         if npc.health >=80:
-            npc.monster_seen(damage= self.strength,fear_aura = self.fear_Aura)
+            action = npc.monster_seen(damage= self.strength,fear_aura = self.fear_Aura)
+            
         
         else:
-            npc.monster_seen(damage =(self.strength/4),fear_aura = (self.fear_Aura * 3))
+            action = npc.monster_seen(damage =(self.strength/4),fear_aura = (self.fear_Aura * 3))
             
+
+        return action
+            
+        
 
 
 
@@ -100,9 +108,10 @@ class Monster:
         # 3. cause fear 
         for victim in cnpc:
 
-            self.cause_fear(victim)
+            action = self.cause_fear(victim)
+            self.actions.append(action)
 
-
+        return self.actions
 
 
 
