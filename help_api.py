@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
@@ -7,14 +8,21 @@ tasks = []
 
 day_tasks = {}
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello, FastAPI!"}
+# @app.get("/")
+# def read_root():
+#     return {"message": "Hello, FastAPI!"}
 
-@app.post('/greet')
-def greetUser(name):
-    return f'hello , good morning {name}'
+@app.get('/greet')
+def greetUser():
+    return {"message": "Hello from FastAPI!"}
 
 
 
