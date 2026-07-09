@@ -24,6 +24,6 @@ class MyApp extends StatelessWidget {
 
 
 //  todo 
-// 1. design basic card and widgets to show basic info 
+// 1. design basic card and widgets to show basic info  ☑️
 // 2. then create functions which call the api 
 // 3. give the widgets the info which was retirved 

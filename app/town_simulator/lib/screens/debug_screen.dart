@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 // import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:town_simulator/services/api_service.dart';
 // import 'package:town_simulator/services/api_service.dart';
 
 class DebugScreen extends StatefulWidget {
@@ -35,24 +34,18 @@ class _DebugScreenState extends State<DebugScreen> {
     }
   }
 
-  Future<dynamic> Function() res = fetchWorldInfo;
+  // Future<dynamic> Function() res = fetchWorldInfo;
   // POST Request Example
   Future<void> sendData() async {
     try {
       final response = await http.post(
-        Uri.parse('$baseUrl/submit'),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'name': 'Flutter App',
-          'description': 'Sent from web client',
-        }),
+        Uri.parse('$baseUrl/npc_info?npc_number=4'),
       );
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         setState(() {
-          responseText =
-              "Status: ${data['status']} - Received: ${data['received']}";
+          responseText = "Received: $data";
         });
       } else {
         setState(() => responseText = "Error: ${response.statusCode}");
@@ -73,7 +66,7 @@ class _DebugScreenState extends State<DebugScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              res as String,
+              responseText,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
@@ -85,7 +78,7 @@ class _DebugScreenState extends State<DebugScreen> {
             const SizedBox(height: 12),
             ElevatedButton(
               onPressed: sendData,
-              child: const Text('Test POST Request'),
+              child: const Text('get npc info'),
             ),
           ],
         ),
