@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:town_simulator/screens/debug_screen.dart';
+import 'package:town_simulator/screens/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       // home: homepage(),
-      home: DebugScreen(), // use this for debugging
+      home: homepage(), // use this for debugging
     );
   }
 }

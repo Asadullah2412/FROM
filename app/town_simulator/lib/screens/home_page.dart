@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:town_simulator/components/event_card.dart';
-import 'package:town_simulator/components/location_card.dart';
-import 'package:town_simulator/components/monster_card.dart';
-import 'package:town_simulator/components/npc_card.dart';
-import 'package:town_simulator/components/sim_info_card.dart';
+import 'package:town_simulator/models/npc.dart';
+import 'package:town_simulator/repositories/npc_service.dart';
 
 class homepage extends StatefulWidget {
   const homepage({super.key});
@@ -14,73 +11,104 @@ class homepage extends StatefulWidget {
 
 class _homepageState extends State<homepage> {
   // try to call the functions here
+  late Future<List<NPC>> npcsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+
+    npcsFuture = getNpcInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(' Town Simulator'),
-      //   backgroundColor: Colors.amber,
-      // ),
-      backgroundColor: Color(0xff25152F),
-      body: SingleChildScrollView(
+      backgroundColor: const Color(0xff25152F),
+      // 1. Remove SingleChildScrollView from the top level so widgets can size correctly
+      body: SafeArea(
         child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              children: [
-                Text(
-                  'npc and monster',
-                  style: TextStyle(color: Colors.white, fontSize: 25),
-                ),
-                Npccard(npc_name: 'npc1'),
-                Npccard(npc_name: 'npc2'),
-                Npccard(npc_name: 'npc3'),
-                Npccard(npc_name: 'npc4'),
-                Npccard(npc_name: 'npc5'),
-                // Npccard(npc_name: 'Monster ')
-                MonsterCard(monster_name: 'monster'),
-              ],
-            ),
+            // 2. Wrap the Column in an Expanded widget so it knows its width boundary
+            Expanded(
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'NPC and Monster',
+                      style: TextStyle(color: Colors.white, fontSize: 25),
+                    ),
+                  ),
+                  // 3. Wrap FutureBuilder in an Expanded widget so ListView knows its height boundary
+                  Expanded(
+                    child: FutureBuilder<List<NPC>>(
+                      future: npcsFuture,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
 
-            Column(
-              children: [
-                Text(
-                  'Main Map of locations ',
-                  style: TextStyle(color: Colors.white, fontSize: 25),
-                ),
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Text(
+                              'Error: ${snapshot.error}',
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          );
+                        }
 
-                Row(
-                  children: [
-                    LocationCard(location_name: 'location 1'),
-                    LocationCard(location_name: 'location 2'),
-                    LocationCard(location_name: 'location 3'),
-                  ],
-                ),
-                Row(
-                  children: [
-                    LocationCard(location_name: 'location 4'),
-                    LocationCard(location_name: 'location 5'),
-                    LocationCard(location_name: 'location 6'),
-                  ],
-                ),
+                        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                          final List<NPC> npcList = snapshot.data!;
 
-                EventCard(event_name: 'Day 1 : blah blah  blah'),
-                EventCard(event_name: 'Day 2 : blah blah  blah'),
-                EventCard(event_name: 'Day 3 : blah blah  blah'),
-              ],
+                          return ListView.builder(
+                            itemCount: npcList.length,
+                            itemBuilder: (context, index) {
+                              final npc = npcList[index];
+                              return ListTile(
+                                // 4. Wrap text widgets in TextStyle(color: Colors.white)
+                                title: Text(
+                                  npc.name,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  'Age: ${npc.age} | Health: ${npc.health}%',
+                                  style: const TextStyle(color: Colors.white70),
+                                ),
+                                trailing: npc.isDead
+                                    ? const Icon(
+                                        Icons.dangerous,
+                                        color: Colors.red,
+                                      )
+                                    : const Icon(
+                                        Icons.favorite,
+                                        color: Colors.green,
+                                      ),
+                              );
+                            },
+                          );
+                        }
+
+                        return const Center(
+                          child: Text(
+                            'No NPCs found in this area.',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Column(
-              children: [
-                Text(
-                  'simulation info',
-                  style: TextStyle(color: Colors.white, fontSize: 25),
-                ),
-                SimInfoCard(world_info: 'escape status , alive , dead , etc '),
-              ],
-            ),
+            // If you have a second column for "Monsters" on the right,
+            // wrap that column in an Expanded widget as well!
           ],
         ),
       ),
