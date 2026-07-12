@@ -70,10 +70,19 @@ class ApiService {
     }
   }
 
-  //
-  //
-  //
-  //
+  // Future<dynamic> getAllNpcs() async {
+  //   try {
+  //     final response = await http.get(Uri.parse('$baseUrl/all_npcs'));
+  //     if (response.statusCode == 200) {
+  //       final data = jsonDecode(response.body);
+  //       return data;
+  //     } else {
+  //       return responseText;
+  //     }
+  //   } catch (e) {
+  //     return "connection failed: $e";
+  //   }
+  // }
 }
 
 // url address

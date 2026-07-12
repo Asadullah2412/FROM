@@ -20,3 +20,6 @@ app.include_router(router=npc_router)
 app.include_router(router=simulation_router)
 app.include_router(router=event_router)
 app.include_router(router=world_router)
+
+# uvicorn main:app --reload 
+#  to run

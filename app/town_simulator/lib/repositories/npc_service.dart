@@ -34,20 +34,4 @@ Future<List<NPC>> getNpcInfo() async {
   return npcs;
 }
 
-Future<dynamic> npcs = getNpcInfo();
-
-// use below code only to debug and test quick features
-// void main() async {
-//   // Use await to get the actual data inside the Future
-//   // var result = await getNpcInfo();
-//   // print(result);
-
-//   List<NPC> npcList = await getNpcInfo();
-//   for (var npc in npcList) {
-//     print('NPC Name: ${npc.name}, Is Dead: ${npc.isDead}');
-//   }
-// }
-
-// var result = api.getAllNpcs();
-
-// print(result);
+// Future<dynamic> npcs = getNpcInfo();
