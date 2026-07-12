@@ -70,6 +70,21 @@ class ApiService {
     }
   }
 
+  Future<Map<String, dynamic>> getWorldInfo() async {
+    try {
+      final response = await http.get(Uri.parse('$baseUrl/world_info'));
+      if (response.statusCode == 200) {
+        // Explicitly cast the decoded JSON as a Map
+        return jsonDecode(response.body) as Map<String, dynamic>;
+      } else {
+        // Throwing an exception is safer than returning a string error text
+        throw Exception('Failed to load data: ${response.statusCode}');
+      }
+    } catch (e) {
+      throw Exception("Connection failed: $e");
+    }
+  }
+
   // Future<dynamic> getAllNpcs() async {
   //   try {
   //     final response = await http.get(Uri.parse('$baseUrl/all_npcs'));

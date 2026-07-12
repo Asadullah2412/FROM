@@ -13,8 +13,8 @@ class Monster {
 
   Monster({
     required this.name,
-    required this.fear_Aura,
-    required this.strength,
+    this.fear_Aura = 0,
+    this.strength = 0,
   });
 
   factory Monster.fromMap(Map<String, dynamic> map) {
@@ -32,4 +32,6 @@ class Monster {
       fear_Aura: toInt(map['fear_Aura'] ?? 0),
     );
   }
+  @override
+  String toString() => name;
 }

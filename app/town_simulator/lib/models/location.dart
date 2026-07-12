@@ -7,16 +7,16 @@
 
 class Location {
   final String name;
-  final knowledgeValue;
-  final danger;
-  final foodSupply;
+  final int knowledgeValue;
+  final int danger;
+  final int foodSupply;
   // final neighbors; // might add later if needed
 
   Location({
     required this.name,
-    required this.knowledgeValue,
-    required this.danger,
-    required this.foodSupply,
+    this.knowledgeValue = 0,
+    this.danger = 0,
+    this.foodSupply = 0,
   });
 
   factory Location.fromMap(Map<String, dynamic> map) {
@@ -35,4 +35,6 @@ class Location {
       foodSupply: toInt(map['food_supply'] ?? 0),
     );
   }
+  @override
+  String toString() => name;
 }

@@ -60,12 +60,27 @@ class World {
     }
 
     return World(
-      npcs: map['npcs'] ?? '',
-      locations: map['location'] ?? '',
+      // 1. Convert plain Strings directly into basic NPC objects
+      npcs: (map['npcs'] as List<dynamic>? ?? [])
+          .map((item) => NPC(name: item.toString()))
+          .toList(),
+
+      // 2. Convert plain Strings directly into basic Location objects
+      locations: (map['locations'] as List<dynamic>? ?? [])
+          .map((item) => Location(name: item.toString()))
+          .toList(),
+
+      // Keep your other fields as they are
       globalClues: toInt(map['global_clues'] ?? 0),
       discoveredClues: toInt(map['discovered_clues'] ?? 0),
       monsterVictims: map['monster_victims'] ?? 0,
-      monsters: map['monsters'],
+      monsters: (map['monster'] as List<dynamic>? ?? [])
+          .map(
+            (item) => Monster(name: item.toString()),
+          ) // Pass string directly here
+          .toList(),
     );
   }
+  // @override
+  // String toString() => name;
 }

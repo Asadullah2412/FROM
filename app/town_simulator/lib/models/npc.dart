@@ -27,16 +27,16 @@ class NPC {
 
   NPC({
     required this.name,
-    required this.actions,
-    required this.age,
-    required this.clues,
-    required this.fear,
-    required this.health,
-    required this.hunger,
-    required this.intelligence,
-    required this.monsterSights,
-    required this.trust,
-    required this.isDead,
+    this.actions = const [], // Default value
+    this.age = 0, // Default value
+    this.clues = const [], // Default value
+    this.fear = 0,
+    this.health = 100,
+    this.hunger = 0,
+    this.intelligence = 0,
+    this.monsterSights = 0,
+    this.trust = 0,
+    this.isDead = false,
   });
 
   factory NPC.fromMap(Map<String, dynamic> map) {
@@ -65,4 +65,6 @@ class NPC {
                 'true'), // Maps snake_case key
     );
   }
+  @override
+  String toString() => name;
 }
