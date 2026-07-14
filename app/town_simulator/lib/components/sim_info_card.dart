@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:town_simulator/models/location.dart';
-import 'package:town_simulator/models/npc.dart';
 import 'package:town_simulator/models/world.dart';
 
 class SimInfoCard extends StatefulWidget {
@@ -38,30 +36,60 @@ class _SimInfoCardState extends State<SimInfoCard> {
           }
 
           if (snapshot.hasData && snapshot.data != Null) {
-            final World worldData = snapshot.data!; // replace this ⚠️⚠️⚠️
-            final List<NPC> npcList = worldData.npcs;
-            final List<Location> locationList = worldData.locations;
+            final World worldData = snapshot.data!;
+            final discoveredClues = worldData.discoveredClues;
+            final globalClues = worldData.globalClues;
+            final String escapeStatus = '$discoveredClues / $globalClues';
+            // final List<NPC> npcList = worldData.npcs;
 
-            return ListView.builder(
-              itemCount: npcList.length,
-              itemBuilder: (context, index) {
-                final npc = npcList[index];
-                return ListTile(
-                  // 4. Wrap text widgets in TextStyle(color: Colors.white)
-                  title: Text(
-                    '$npc',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+            // final List<Location> locationList = worldData.locations;
+
+            return Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Container(
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  gradient: LinearGradient(
+                    colors: [Colors.white, Colors.grey.shade50],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                  // subtitle: Text(
-                  //   // 'Age: ${npc.age} | Health: ${npc.health}',
-                  //   // style: const TextStyle(color: Colors.white70),
-                  // ),
-                );
-              },
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      'Escape Status : ',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black87,
+                        letterSpacing: 0.5,
+                        height: 1.4,
+                      ),
+                    ),
+                    Text(
+                      escapeStatus,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black87,
+                        letterSpacing: 0.5,
+                        height: 1.4,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             );
+
+            // },
+            // );
           }
 
           return const Center(

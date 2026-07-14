@@ -47,19 +47,37 @@ class _NpccardState extends State<Npccard> {
               itemCount: npcList.length,
               itemBuilder: (context, index) {
                 final npc = npcList[index];
-                return ListTile(
-                  // 4. Wrap text widgets in TextStyle(color: Colors.white)
-                  title: Text(
-                    npc.name,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+
+                return Card(
+                  color: Color(0xff971B29), // Matching your white text theme
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 6.0,
+                    horizontal: 4.0,
+                  ),
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(
+                      12,
+                    ), // Keeps ripple inside card bounds
+                    onTap: () {
+                      // TODO: Add your click action here dialog
+                      print('Clicked on ${npc.name}');
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        npc.name,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                   ),
-                  // subtitle: Text(
-                  //   // 'Age: ${npc.age} | Health: ${npc.health}',
-                  //   // style: const TextStyle(color: Colors.white70),
-                  // ),
                 );
               },
             );

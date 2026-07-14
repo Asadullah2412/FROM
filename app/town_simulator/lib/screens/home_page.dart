@@ -33,22 +33,28 @@ class _homepageState extends State<homepage> {
 
       body: SafeArea(
         child: Row(
+          // Row1
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // 2. Wrap the Column in an Expanded widget so it knows its width boundary
+            // This column takes up exactly 15% of the Row's width
             Expanded(
+              flex: 15,
               child: Column(
                 children: [
-                  Text(
-                    'NPC and Monster',
-                    style: TextStyle(color: Colors.white, fontSize: 25),
-                  ),
-                  Npccard(npcsFuture: npcsFuture), // npc data
-                  // Npccard(npcsFuture: worldFuture), // npc data
                   SimInfoCard(worldFuture: worldFuture),
+                  Npccard(npcsFuture: npcsFuture),
                 ],
               ),
             ),
+            Expanded(
+              flex: 85,
+              child: Container(
+                color: Colors.grey[200], // Temporary visual boundary
+                child: const Center(child: Text('More widgets go here')),
+              ),
+            ),
+
             // If you have a second column for "Monsters" on the right,
             // wrap that column in an Expanded widget as well!
           ],
