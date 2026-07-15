@@ -115,52 +115,54 @@ class _CenterSectionState extends State<CenterSection> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
                       'Event Log',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    const Spacer(),
+                    // const Spacer(),
                     // Filter Chips Group
-                    Wrap(
-                      spacing: 4,
-                      children:
-                          [
-                            'All',
-                            'Movement',
-                            'Clues',
-                            'Encounters',
-                            'Deaths',
-                          ].map((filter) {
-                            final bool isSelected = filter == 'All';
-                            return Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 4,
-                              ),
-                              decoration: BoxDecoration(
-                                color: isSelected
-                                    ? const Color(0xFF0F172A)
-                                    : Colors.transparent,
-                                borderRadius: BorderRadius.circular(4),
-                                border: Border.all(
-                                  color: isSelected
-                                      ? Colors.green.withValues(alpha: 0.5)
-                                      : Colors.white10,
-                                ),
-                              ),
-                              child: Text(
-                                filter,
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: isSelected
-                                      ? Colors.green
-                                      : Colors.grey[400],
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                    ),
+                    //     Wrap(
+                    //       spacing: 4,
+                    //       children:
+                    //           [
+                    //             'All',
+                    //             'Movement',
+                    //             'Clues',
+                    //             'Encounters',
+                    //             'Deaths',
+                    //           ].map((filter) {
+                    //             final bool isSelected = filter == 'All';
+                    //             return Container(
+                    //               padding: const EdgeInsets.symmetric(
+                    //                 horizontal: 8,
+                    //                 vertical: 4,
+                    //               ),
+                    //               decoration: BoxDecoration(
+                    //                 color: isSelected
+                    //                     ? const Color(0xFF0F172A)
+                    //                     : Colors.transparent,
+                    //                 borderRadius: BorderRadius.circular(4),
+                    //                 border: Border.all(
+                    //                   color: isSelected
+                    //                       ? Colors.green.withValues(alpha: 0.5)
+                    //                       : Colors.white10,
+                    //                 ),
+                    //               ),
+                    //               child: Text(
+                    //                 filter,
+                    //                 style: TextStyle(
+                    //                   fontSize: 10,
+                    //                   color: isSelected
+                    //                       ? Colors.green
+                    //                       : Colors.grey[400],
+                    //                 ),
+                    //               ),
+                    //             );
+                    //           }).toList(),
+                    //     ),
+                    // ⚠️⚠️⚠️
                   ],
                 ),
                 const Divider(height: 16, color: Colors.white10),

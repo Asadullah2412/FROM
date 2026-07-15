@@ -30,34 +30,34 @@ class _LeftSidebarState extends State<LeftSidebar> {
                 ),
               ),
               const Divider(height: 16),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Day',
-                        style: TextStyle(fontSize: 11, color: Colors.grey),
-                      ),
-                      Text(
-                        '5',
-                        style: TextStyle(fontSize: 18, color: Colors.green),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Time',
-                        style: TextStyle(fontSize: 11, color: Colors.grey),
-                      ),
-                      Text('Day ☀️', style: TextStyle(fontSize: 14)),
-                    ],
-                  ),
-                ],
-              ),
+              // const Row( ⚠️⚠️ reconsider it
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         Text(
+              //           'Day',
+              //           style: TextStyle(fontSize: 11, color: Colors.grey),
+              //         ),
+              //         Text(
+              //           '5',
+              //           style: TextStyle(fontSize: 18, color: Colors.green),
+              //         ),
+              //       ],
+              //     ),
+              //     Column(
+              //       crossAxisAlignment: CrossAxisAlignment.end,
+              //       children: [
+              //         Text(
+              //           'Time',
+              //           style: TextStyle(fontSize: 11, color: Colors.grey),
+              //         ),
+              //         Text('Day ☀️', style: TextStyle(fontSize: 14)),
+              //       ],
+              //     ),
+              //   ],
+              // ),
               const SizedBox(height: 12),
               const Text('Escape Progress', style: TextStyle(fontSize: 12)),
               const SizedBox(height: 4),
@@ -74,20 +74,20 @@ class _LeftSidebarState extends State<LeftSidebar> {
                 ),
               ),
               const SizedBox(height: 8),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Monster Location', style: TextStyle(fontSize: 12)),
-                  Text(
-                    'Hospital',
-                    style: TextStyle(
-                      color: Colors.purpleAccent,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
-              ),
+              // const Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Text('Monster Location', style: TextStyle(fontSize: 12)),
+              //     Text(
+              //       'Hospital',
+              //       style: TextStyle(
+              //         color: Colors.purpleAccent,
+              //         fontWeight: FontWeight.bold,
+              //         fontSize: 12,
+              //       ),
+              //     ),
+              //   ],
+              // ),⚠️⚠️ reconsider it
               const SizedBox(height: 8),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -168,13 +168,14 @@ class _LeftSidebarState extends State<LeftSidebar> {
                             const SizedBox(width: 2),
                             const Text('80', style: TextStyle(fontSize: 11)),
                             const SizedBox(width: 6),
-                            const Icon(
-                              Icons.shield,
-                              color: Colors.blue,
-                              size: 12,
-                            ),
-                            const SizedBox(width: 2),
-                            const Text('40', style: TextStyle(fontSize: 11)),
+                            // const Icon(
+                            //   Icons.shield,
+                            //   color: Colors.blue,
+                            //   size: 12,
+                            // ),
+                            // ⚠️⚠️⚠️
+                            // const SizedBox(width: 2),
+                            // const Text('40', style: TextStyle(fontSize: 11)),
                             const Spacer(),
                             Text(
                               '${8 - index > 0 ? 8 - index : 1} clues',

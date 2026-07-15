@@ -36,7 +36,7 @@ class _HeaderSectionState extends State<HeaderSection> {
           _buildControlGroup(),
           const Spacer(),
           // Simulation Speed Control Area
-          _buildSpeedControl(),
+          // _buildSpeedControl(), ⚠️⚠️ reconsider it
           const SizedBox(width: 32),
           const Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -69,23 +69,23 @@ Widget _buildControlGroup() {
       children: [
         TextButton.icon(
           onPressed: () {},
-          icon: const Icon(Icons.pause, size: 16),
-          label: const Text('|| Pause'),
+          icon: const Icon(Icons.play_arrow_rounded, size: 16),
+          label: const Text('Start'),
         ),
         TextButton.icon(
           onPressed: () {},
-          icon: const Icon(Icons.play_arrow, size: 16),
-          label: const Text('▶ Next Day'),
+          icon: const Icon(Icons.forward, size: 16),
+          label: const Text('Next Day'),
         ),
-        TextButton.icon(
-          onPressed: () {},
-          icon: const Icon(Icons.fast_forward, size: 16),
-          label: const Text('⏩ Auto (10x)'),
-        ),
+        // TextButton.icon(
+        //   onPressed: () {},
+        //   icon: const Icon(Icons.fast_forward, size: 16),
+        //   label: const Text('Auto (10x)'),
+        // ), ⚠️⚠️ reconsider it
         TextButton.icon(
           onPressed: () {},
           icon: const Icon(Icons.skip_next, size: 16),
-          label: const Text('⏭ Skip to Day 20'),
+          label: const Text('Skip to last day'),
         ),
         TextButton.icon(
           onPressed: () {},
@@ -99,29 +99,29 @@ Widget _buildControlGroup() {
     ),
   );
 }
-
-Widget _buildSpeedControl() {
-  return Row(
-    children: [
-      const Text(
-        'Simulation Speed',
-        style: TextStyle(fontSize: 12, color: Colors.grey),
-      ),
-      const SizedBox(width: 8),
-      SizedBox(
-        width: 120,
-        child: SliderTheme(
-          data: SliderThemeData(
-            trackHeight: 4,
-            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-          ),
-          child: Slider(value: 0.7, onChanged: (v) {}),
-        ),
-      ),
-      const Text('10x', style: TextStyle(fontSize: 12)),
-    ],
-  );
-}
+// ⚠️⚠️ reconsider it
+// Widget _buildSpeedControl() {
+//   return Row(
+//     children: [
+//       const Text(
+//         'Simulation Speed',
+//         style: TextStyle(fontSize: 12, color: Colors.grey),
+//       ),
+//       const SizedBox(width: 8),
+//       SizedBox(
+//         width: 120,
+//         child: SliderTheme(
+//           data: SliderThemeData(
+//             trackHeight: 4,
+//             thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+//           ),
+//           child: Slider(value: 0.7, onChanged: (v) {}),
+//         ),
+//       ),
+//       const Text('10x', style: TextStyle(fontSize: 12)),
+//     ],
+//   );
+// }
 // }
 
 // }

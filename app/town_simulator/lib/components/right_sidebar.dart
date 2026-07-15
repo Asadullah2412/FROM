@@ -63,6 +63,7 @@ class RightSidebar extends StatelessWidget {
                 _buildStatMetric('Health', 0.8, Colors.green, '80 / 100'),
                 _buildStatMetric('Fear', 0.4, Colors.orange, '40 / 100'),
                 _buildStatMetric('Trust', 0.5, Colors.blue, '50 / 100'),
+                _buildStatMetric('intelligence', 0.5, Colors.blue, '50 / 100'),
                 const SizedBox(height: 14),
                 const Text(
                   'Clues Known (8)',
@@ -114,22 +115,37 @@ class RightSidebar extends StatelessWidget {
                           style: TextStyle(fontSize: 11, color: Colors.white70),
                         ),
                       ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 2.0),
+                        child: Text(
+                          '• Receipt with hidden coded message',
+                          style: TextStyle(fontSize: 11, color: Colors.white70),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 2.0),
+                        child: Text(
+                          '• Receipt with hidden coded message',
+                          style: TextStyle(fontSize: 11, color: Colors.white70),
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 14),
-                const Text(
-                  'Relationships',
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                _buildRelationRow('npc2', 0.6, Colors.green, 'Ally'),
-                _buildRelationRow('npc3', 0.4, Colors.orange, 'Neutral'),
-                _buildRelationRow('npc6', 0.1, Colors.red, 'Does not trust'),
+                // const SizedBox(height: 14),
+                // const Text(
+                //   'Relationships',
+                //   style: TextStyle(
+                //     fontSize: 11,
+                //     fontWeight: FontWeight.bold,
+                //     color: Colors.grey,
+                //   ),
+                // ),
+                // const SizedBox(height: 8),
+                // _buildRelationRow('npc2', 0.6, Colors.green, 'Ally'),
+                // _buildRelationRow('npc3', 0.4, Colors.orange, 'Neutral'),
+                // _buildRelationRow('npc6', 0.1, Colors.red, 'Does not trust'),
+                // ⚠️⚠️⚠️⚠️
               ],
             ),
           ),
