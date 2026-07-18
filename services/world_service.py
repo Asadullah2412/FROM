@@ -26,7 +26,7 @@ def world_details():
         'npcs' : npc_names,
         'events' : w1.events,
         'monster' : monster_names,
-        'monster_victims': w1.dead_npc,
+        'monster_victims': w1.dead_npcs,
         'locations' : location_names,
         'discovered_clues': len(w1.discovered_clues),
         'global_clues' :  w1.global_clues

@@ -64,23 +64,23 @@ import copy
 import random
 import json
 
-from engine.npc import NPC
-from engine.place import Location
+from npc import NPC
+from place import Location
 class world:
 
     def __init__(self,day,isDay):
         self.day =day
         self.isDay = isDay
         self.events = {}
-        self.npcs = []
+        self.npcs = []  
         self.monsters = [] # adding this later
         self.locations = []
         self.global_clues = 20
         self.discovered_clues = []
         self.town_map = {}
         self.s_town_map = []
-        
-        self.dead_npc = []
+        self.alive_npcs = []
+        self.dead_npcs = []
 
 
     def get_discovered_clues(self,npc):
@@ -128,59 +128,103 @@ class world:
 
     def run_day(self):
 
-        # 1. Print current day
-        # print(f"current day is {self.day}")
+        # Reset daily data
         self.town_map.clear()
         self.monsters[0].actions = []
-        # self.events.clear()
-        # 2. Loop through NPCs
+        self.alive_npcs = []
 
+        # Loop through NPCs
         for npc in self.npcs:
 
             if npc.is_dead == False:
+
+                self.alive_npcs.append(npc)
                 npc.actions = []
+
                 current_location = random.choice(self.locations)
-                
+
                 if current_location.name in self.town_map:
                     self.town_map[current_location.name].append(npc)
                 else:
                     self.town_map[current_location.name] = [npc]
-                
 
-                npc_actions  = npc.act(current_location) # 3. NPC moves , 5. NPC updates stats
-                npc_actions.append(self.location_npc_check(current_location=current_location,npc=npc))
-                self.log_event(day=self.day,new_event=npc_actions,event_type='npc_actions')
-                self.get_discovered_clues(npc) #6 update discoverd clues
-                
+                npc_actions = npc.act(current_location)
+
+                npc_actions.append(
+                    self.location_npc_check(
+                        current_location=current_location,
+                        npc=npc
+                    )
+                )
+
+                self.log_event(
+                    day=self.day,
+                    new_event=npc_actions,
+                    event_type='npc_actions'
+                )
+
+                self.get_discovered_clues(npc)
+
             else:
-                self.dead_npc.append(npc.name)
-                # print(self.dead_npc)
-                self.npcs.remove(npc)
+                self.dead_npcs.append(npc.name)
 
-        # self.monsters.action = []
+        # Update living NPC list
+        self.npcs = self.alive_npcs
+
+
+        # Debug
+        print(f"\n===== Day {self.day} =====")
+        print("NPC List:", [npc.name for npc in self.npcs])
+        print("Living NPCs:", sum(not npc.is_dead for npc in self.npcs))
+        print("Town map:", self.town_map)
+
+
+        # Game over condition
+        if len(self.npcs) == 0:
+
+            print("GAME OVER: All NPCs are dead")
+
+            return {
+                "status": "game_over",
+                "day": self.day,
+                "reason": "All NPCs are dead",
+                "events": self.events
+            }
+
+
+        # Monster hunts only if NPCs exist
         monster_action = self.monsters[0].hunt(self.town_map)
-        # print(monster_action)
-        self.log_event(day=self.day,new_event=monster_action,event_type='monster_actions')
-        #  xx monster hunts 
-            
 
-        #7. check escape status
+        self.log_event(
+            day=self.day,
+            new_event=monster_action,
+            event_type='monster_actions'
+        )
+
+
+        # Check escape status
         self.s_town_map = self.serialize_town_map()
-        # self.log_event(day= self.day,new_event=self.s_town_map)
-        # self.log_event(day=self.day,new_event={'dead_npc':self.dead_npc})
-        # snap = self.snapshot(day=self.day)
-        if self.escape_status() == True:
-            print("HURRAY!!!!")
-        else:
-            # 8. Advance time
 
+        if self.escape_status():
+
+            print("HURRAY!!!!")
+
+            return {
+                "status": "escaped",
+                "day": self.day,
+                "events": self.events
+            }
+
+        else:
 
             self.advance_time()
-            
             self.day += 1
 
-        return self.events
-
+            return {
+                "status": "running",
+                "day": self.day,
+                "events": self.events
+            }
 
     def advance_time(self):
 
@@ -265,7 +309,7 @@ class world:
         snapshot = {
         "npcs": self.npcs,
         "town_map": self.s_town_map,
-        "dead_npcs": self.dead_npc,
+        "dead_npcs": self.dead_npcs,
      "escape_progress": f'{len(self.discovered_clues)} / {self.global_clues}',
         # "time": self.time
             }
