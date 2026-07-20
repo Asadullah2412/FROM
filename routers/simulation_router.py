@@ -1,11 +1,17 @@
 from fastapi import APIRouter
-from services.simulation import start_simulation
+from services.simulation import start_simulation , reset_simulation
 simulation_router = APIRouter()
 
-@simulation_router.post('/start_simulation')
-def start(days:int):
-    sim_day = start_simulation(days=days)
-    return sim_day[1]
+@simulation_router.get('/start_simulation')
+def start():
+    sim_day = start_simulation()
+    return sim_day
+
+@simulation_router.get('/reset')
+def reset():
+    msg = reset_simulation()
+    return msg
+
 
 
 

@@ -1,4 +1,4 @@
-from engine.place import locations,Location
+from engine.location import locations,Location
 from engine.npc import characters,NPC
 from engine.world import world
 from engine.monster import monster
@@ -150,9 +150,15 @@ from services.simulation import start_simulation
 # for i in range(1,days+1):
 #     print(i) 
 
-x = start_simulation(days=5)
+x = start_simulation()
+print("status",x[0]['status'])
+print("ending",x[0]['ending'])
+print("alive npcs",x[0]['alive_npcs'])
+print("dead npcs",x[0]['dead_npcs'])
+print("---------------------------------------------------------\n\n")
+print(x)
 
-print(len(x))
+# print(len(x))
 
 # for location in locations:
 #     print(type(location.name))

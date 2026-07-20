@@ -64,16 +64,17 @@ import copy
 import random
 import json
 
-from npc import NPC
-from place import Location
+# from npc import NPC
+# from npc import NPC
+from engine.location import Location
 class world:
 
-    def __init__(self,day,isDay):
-        self.day =day
+    def __init__(self,isDay):
+        self.day =1
         self.isDay = isDay
         self.events = {}
         self.npcs = []  
-        self.monsters = [] # adding this later
+        self.monsters = [] 
         self.locations = []
         self.global_clues = 20
         self.discovered_clues = []
@@ -132,9 +133,11 @@ class world:
         self.town_map.clear()
         self.monsters[0].actions = []
         self.alive_npcs = []
+        self.events = {}
+        
 
         # Loop through NPCs
-        for npc in self.npcs:
+        for npc in self.npcs:  
 
             if npc.is_dead == False:
 
@@ -166,29 +169,36 @@ class world:
                 self.get_discovered_clues(npc)
 
             else:
-                self.dead_npcs.append(npc.name)
+                
+                self.dead_npcs.append(npc)
 
         # Update living NPC list
         self.npcs = self.alive_npcs
 
 
-        # Debug
-        print(f"\n===== Day {self.day} =====")
-        print("NPC List:", [npc.name for npc in self.npcs])
-        print("Living NPCs:", sum(not npc.is_dead for npc in self.npcs))
-        print("Town map:", self.town_map)
+        # # Debug
+        # print(f"\n===== Day {self.day} =====")
+        # print("NPC List:", [npc.name for npc in self.npcs])
+        # print("Living NPCs:", sum(not npc.is_dead for npc in self.npcs))
+        # print("Town map:", self.town_map)
 
 
         # Game over condition
         if len(self.npcs) == 0:
 
-            print("GAME OVER: All NPCs are dead")
+            # print("GAME OVER: All NPCs are dead")
 
             return {
-                "status": "game_over",
-                "day": self.day,
+                "status": "completed",
+                # "day": self.day,
+                "ending" : 'game over',
                 "reason": "All NPCs are dead",
-                "events": self.events
+                # 'alive_npcs' : self.npcs,
+                # 'dead_npcs' : self.dead_npcs,
+                # "events": self.events
+                "alive_npcs": copy.deepcopy(self.alive_npcs),
+                "dead_npcs": copy.deepcopy(self.dead_npcs),
+                "events": copy.deepcopy(self.events)
             }
 
 
@@ -207,24 +217,37 @@ class world:
 
         if self.escape_status():
 
-            print("HURRAY!!!!")
+            # print("HURRAY!!!!") # debug
 
             return {
-                "status": "escaped",
-                "day": self.day,
-                "events": self.events
+                "status": "completed",
+                # "day": self.day,
+                "ending" : 'escaped',
+                # 'alive_npcs' : self.npcs,
+                # 'dead_npcs' : self.dead_npcs,
+                # "events": self.events
+                "alive_npcs": copy.deepcopy(self.alive_npcs),
+                "dead_npcs": copy.deepcopy(self.dead_npcs),
+                "events": copy.deepcopy(self.events)
             }
 
         else:
-
             self.advance_time()
             self.day += 1
+            
 
             return {
-                "status": "running",
-                "day": self.day,
-                "events": self.events
+                "status": "completed",
+                "day": self.day-1,
+                "ending" : 'time_limit',
+                # 'alive_npcs' : self.npcs,
+                # 'dead_npcs' : self.dead_npcs,
+                # "events": self.events
+                "alive_npcs": copy.deepcopy(self.alive_npcs),
+                "dead_npcs": copy.deepcopy(self.dead_npcs),
+                "events": copy.deepcopy(self.events)
             }
+        
 
     def advance_time(self):
 
@@ -246,7 +269,6 @@ class world:
 # 
             # self.monsters.extend(monsters)
         # else:
-
 
         self.monsters.append(monsters) # duct tape fix later once you decide the num of monsters 
 

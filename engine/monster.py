@@ -118,4 +118,7 @@ class Monster:
 
 # dummy monsters
 
-monster = Monster(name='monster',agression=90,strength=80,fear_Aura=100)
+def create_monster():
+
+    monster = Monster(name='monster',agression=90,strength=80,fear_Aura=100) 
+    return monster
